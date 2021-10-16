@@ -30,8 +30,12 @@ class CitizenView
   /**
    * Muestra las condiciones de entrega del material.
    */
-  function showDeliveryConditions()
+  function showDeliveryConditions($method, $material, $img)
   {
+    $this->smarty->assign('title_s',"Condiciones de entrega del {$material}");
+    $this->smarty->assign('deliveryMethod_s',$method);
+    $this->smarty->assign('material_s',$material);
+    $this->smarty->assign('img_s',$img);
     $this->smarty->display("templates/deliveryConditions.tpl");
   }
 

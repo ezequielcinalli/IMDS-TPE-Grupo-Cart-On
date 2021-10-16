@@ -1,5 +1,5 @@
 [
-  { "material": "Carton", "deliveryMethod": "Debe estar ..." },
-  { "material": "Aluminio", "deliveryMethod": "Debe estar ..." },
-  { "material": "Plastico", "deliveryMethod": "Debe estar ..." }
+    { "material": "Cartón", "deliveryMethod": "Debe estar seco." },
+    { "material": "Aluminio", "deliveryMethod": "Debe estar limpio y seco." },
+    { "material": "Plastico", "deliveryMethod": "Debe estar seco y limpio. Sacar la etiqueta si es que trae. Se aceptan los que sean de la categoria PET, PEAD, PVC, PEBD, PP, PS. No asi la categoria tipo 7." }
 ]
