@@ -28,7 +28,8 @@ class CitizenController
    */
   function showAcceptedMaterials()
   {
-    $this->view->showAcceptedMaterials();
+    $jsonMaterials = json_decode($this->data);
+    $this->view->showAcceptedMaterials($jsonMaterials);
   }
 
   /**
@@ -40,15 +41,7 @@ class CitizenController
     if($json[$id]){
       $deliveryMethod = $json[$id]['deliveryMethod'];
       $material = $json[$id]['material'];
-      if($id == 0){
-        $image = "images/carton.jpg";
-      }
-      if($id == 1){
-        $image = "images/aluminio.jpg";
-      }
-      if($id == 2){
-        $image = "images/plastico.jpg";
-      }
+      $image = $json[$id]['image'];
       $this->view->showDeliveryConditions($deliveryMethod, $material, $image);
     }else{
       $this->view->showError404();
