@@ -3,21 +3,21 @@ require_once 'libs/Smarty.class.php';
 
 class CitizenView
 {
-    private $smarty;
+  private $smarty;
 
-    function __construct()
-    {
-        $this->smarty = new Smarty();
-        $this->smarty->assign('BASE_URL', BASE_URL);
-    }
+  function __construct()
+  {
+      $this->smarty = new Smarty();
+      $this->smarty->assign('BASE_URL', BASE_URL);
+  }
 
-    /**
-     * Muestra la pagina de inicio.
-     */
-    function showHome()
-    {
-        $this->smarty->display('templates/home.tpl');
-    }
+  /**
+   * Muestra la pagina de inicio.
+   */
+  function showHome()
+  {
+      $this->smarty->display('templates/home.tpl');
+  }
 
   /**
    * Muestra los materiales aceptados.
@@ -39,20 +39,20 @@ class CitizenView
     $this->smarty->display("templates/deliveryConditions.tpl");
   }
 
-    /**
-     * Permite registrar una orden para retirar materiales.
-     */
-    function registerRetirementRequest($error = null)
-    {
-        $this->smarty->assign('error', $error);
-        $this->smarty->display('templates/registerRetirementRequest.tpl');
-    }
+  /**
+   * Permite registrar una orden para retirar materiales.
+   */
+  function registerRetirementRequest($error = null)
+  {
+      $this->smarty->assign('error', $error);
+      $this->smarty->display('templates/registerRetirementRequest.tpl');
+  }
 
-    /**
-     * Muestra mensaje de error 404.
-     */
-    function showError404()
-    {
-        $this->smarty->display('templates/error404.tpl');
-    }
+  /**
+   * Muestra mensaje de error 404.
+   */
+  function showError404()
+  {
+      $this->smarty->display('templates/error404.tpl');
+  }
 }
