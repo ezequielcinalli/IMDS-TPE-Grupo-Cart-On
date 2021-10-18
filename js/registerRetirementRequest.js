@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', scriptregistro)
 function scriptregistro() {
   let formretiro = document.querySelector('#formretiro')
   formretiro.addEventListener('submit', (e) => {
-    //e.preventDefault()
+    e.preventDefault()
     validarregistro()
   })
 
@@ -16,40 +16,41 @@ function scriptregistro() {
     let inputfhoraria = document.querySelector('#inputFHoraria')
     let inputvolmateriales = document.querySelector('#inputVolMateriales')
 
-    if (inputnombre == null || inputnombre.length == 0) {
-      inputnombre.setAttribute('class', 'form-control w-100 is-invalid')
-      /*document.querySelector('#invalidNombre').innerHTML =
-        'Por favor ingrese un nombre'*/
+    if (inputnombre.value == null || inputnombre.value.length == 0) {
+      console.log('hola mundo')
+      inputnombre.className = 'form-control w-100 is-invalid'
+    } else {
+      inputnombre.className = 'form-control w-100 is-valid'
     }
 
-    if (inputapellido == null) {
+    if (inputapellido.value == null || inputapellido.value.length == 0) {
       inputapellido.className = 'form-control w-100 is-invalid'
-      document.querySelector('#invalidApellido').innerHTML =
-        'Por favor ingrese un apellido'
+    } else {
+      inputapellido.className = 'form-control w-100 is-valid'
     }
 
-    if (inputdireccion == null) {
+    if (inputdireccion.value == null || inputdireccion.value.length == 0) {
       inputdireccion.className = 'form-control w-100 is-invalid'
-      document.querySelector('#invalidNombre').innerHTML =
-        'Por favor ingrese una dirección'
+    } else {
+      inputdireccion.className = 'form-control w-100 is-valid'
     }
 
-    if (inputtelefono == null) {
+    if (inputtelefono.value == null || inputtelefono.value.length == 0) {
       inputtelefono.className = 'form-control w-100 is-invalid'
-      document.querySelector('#invalidNombre').innerHTML =
-        'Por favor ingrese un telefono'
+    } else {
+      inputtelefono.className = 'form-control w-100 is-valid'
     }
 
-    if (inputfhoraria == null) {
+    if (inputfhoraria.value == null || inputfhoraria.value.length == 0) {
       inputfhoraria.className = 'form-control w-100 is-invalid'
-      document.querySelector('#invalidNombre').innerHTML =
-        'Por favor elija una franja horaria'
+    } else {
+      inputfhoraria.className = 'form-control w-100 is-valid'
     }
 
-    if (inputvolmateriales == null) {
+    if (inputvolmateriales == null || inputvolmateriales.value.length == 0) {
       inputvolmateriales.className = 'form-control w-100 is-invalid'
-      document.querySelector('#invalidNombre').innerHTML =
-        'Por favor elija el volumen de los materiales'
+    } else {
+      inputvolmateriales.className = 'form-control w-100 is-valid'
     }
   }
 }
