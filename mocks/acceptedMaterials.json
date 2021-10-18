@@ -1,5 +1,9 @@
 [
-    { "material": "Cartón", "deliveryMethod": "Debe estar seco." },
-    { "material": "Aluminio", "deliveryMethod": "Debe estar limpio y seco." },
-    { "material": "Plastico", "deliveryMethod": "Debe estar seco y limpio. Sacar la etiqueta si es que trae. Se aceptan los que sean de la categoria PET, PEAD, PVC, PEBD, PP, PS. No asi la categoria tipo 7." }
+    { "material": "Botellas de vidrio", "deliveryMethod": "Debe estar seco y limpio. Sacar la etiqueta y tapa, si es que trae.", "image" : "images/vidrio.jpg"},
+    { "material": "Cartón", "deliveryMethod": "Debe estar seco y limpio. Se aceptan de todos los espesores y colores.", "image" : "images/carton.jpg"},
+    { "material": "Envases de aluminio", "deliveryMethod": "Debe estar seco y limpio.", "image" : "images/aluminio.jpg" },
+    { "material": "Envases plásticos", "deliveryMethod": "Debe estar seco y limpio. Sacar la etiqueta y tapa, si es que trae. Se aceptan los que sean de la categoria PET, PEAD, PVC, PEBD, PP, PS. No asi la categoria tipo 7.", "image" : "images/plastico.jpg" },
+    { "material": "Latas de conserva", "deliveryMethod": "Debe estar seco y limpio. Sacar la etiqueta si es que trae.", "image" : "images/latas.jpg" },
+    { "material": "Papel", "deliveryMethod": "Debe estar seco y limpio. Se aceptan de todos los espesores y colores.", "image" : "images/papel.jpg" },
+    { "material": "Tetrabrik", "deliveryMethod": "Debe estar seco y limpio. Sacar la tapa si es que trae.", "image" : "images/tetra.jpg" }
 ]
