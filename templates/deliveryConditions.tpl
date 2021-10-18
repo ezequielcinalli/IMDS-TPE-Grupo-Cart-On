@@ -2,7 +2,7 @@
 <div class="container shadow-lg p-3 mb-0 bg-white rounded ">
   <div class="row justify-content-center">
     <div class="col text-center my-4 ">
-      <h1>{$title_s}</h1>
+      <h1>Condiciones de entrega de {$material_s}</h1>
     </div>
   </div>
   <div class="row justify-content-center">
