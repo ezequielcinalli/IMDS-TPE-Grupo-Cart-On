@@ -40,11 +40,11 @@ class CitizenView
   }
 
   /**
-   * Permite registrar una orden para retirar materiales.
+   * Muestra el formulario de registro para crear una orden de retiraro de materiales.
    */
-  function registerRetirementRequest($error = null)
-  {
-      $this->smarty->assign('error', $error);
+  function showRegisterRetirementRequest($msj = null)
+  {   
+      $this->smarty->assign('msj', $msj);
       $this->smarty->display('templates/registerRetirementRequest.tpl');
   }
 

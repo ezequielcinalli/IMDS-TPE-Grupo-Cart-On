@@ -11,8 +11,8 @@ class CitizenController
    */
   function __construct()
   {
-      $this->view = new CitizenView();
-      $this->data = file_get_contents('mocks/acceptedMaterials.json');
+    $this->view = new CitizenView();
+    $this->data = file_get_contents('mocks/acceptedMaterials.json');
   }
 
   /**
@@ -20,7 +20,7 @@ class CitizenController
    */
   function showHome()
   {
-      $this->view->showHome();
+    $this->view->showHome();
   }
 
   /**
@@ -38,29 +38,79 @@ class CitizenController
   function showDeliveryConditions($id)
   {
     $json = json_decode($this->data, true);
-    if($json[$id]){
+    if ($json[$id]) {
       $deliveryMethod = $json[$id]['deliveryMethod'];
       $material = $json[$id]['material'];
       $image = $json[$id]['image'];
       $this->view->showDeliveryConditions($deliveryMethod, $material, $image);
-    }else{
+    } else {
       $this->view->showError404();
     }
   }
   /**
    * Manda a mostrar la pagina para registrar un pedido de retiro.
    */
+  function showRegisterRetirementRequest()
+  {
+    $this->view->showRegisterRetirementRequest();
+  }
+
+  /**
+   * Verificacion de registro de orden.
+   */
   function registerRetirementRequest()
   {
-      $this->view->registerRetirementRequest();
+    $name = $_POST['nombre'];
+    $lastname = $_POST['apellido'];
+    $adress = $_POST['direccion'];
+    $movilnumber = $_POST['telefono'];
+    $time = $_POST['franjahoraria'];
+    $materialsvol = $_POST['volmateriales'];
+
+
+    /**
+     *  verificacion de formulario 
+     */
+    if (empty($name) || empty($lastname) || empty($adress) || empty($movilnumber) || empty($time) || empty($materialsvol)) 
+    {
+      $this->view->showRegisterRetirementRequest('Faltan datos obligatorios para la orden.');
+      die();
+    }
+    if (strlen((string)$movilnumber) < 8) 
+    {
+      $this->view->showRegisterRetirementRequest('El numero de telefono tiene que tener al menos 8 numeros.');
+      die();
+    }
+
+    if ($_FILES['subirfotos']['type'] == "image/jpg" || $_FILES['subirfotos']['type'] == "image/jpeg" || $_FILES['subirfotos']['type'] == "image/png") 
+    {
+      $imagename = $this->uniqueSaveName($_FILES['subirfotos']['name'], $_FILES['subirfotos']['tmp_name']);
+    }
+     
+    $this->view->showRegisterRetirementRequest('Formulario enviado con exito!');
   }
+
+
+  /**
+   *Guardado de imagenes
+   */
+  function uniqueSaveName($realName, $tempName)
+  {
+
+    $filePath = "images/" . uniqid("", true) . "." . strtolower(pathinfo($realName, PATHINFO_EXTENSION));
+
+    move_uploaded_file($tempName, $filePath);
+
+    return $filePath;
+  }
+
 
   /**
    * Manda a mostrar error 404 si la URL llega inválida.
    */
   function showError404()
   {
-      header('HTTP/1.0 404 Not Found');
-      $this->view->showError404();
+    header('HTTP/1.0 404 Not Found');
+    $this->view->showError404();
   }
 }

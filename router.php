@@ -39,6 +39,9 @@ switch ($params[0]) {
     }
     break;
   case "registrar-pedido-retiro":
+    $controllerCitizen->showRegisterRetirementRequest();
+    break;
+  case "enviar-orden":
     $controllerCitizen->registerRetirementRequest();
     break;
   default:
