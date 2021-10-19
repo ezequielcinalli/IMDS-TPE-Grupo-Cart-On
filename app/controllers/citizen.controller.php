@@ -65,7 +65,7 @@ class CitizenController
     function registerRetirementRequest()
     {
         $name = $_POST["nombre"];
-        $lastname = $_POST["apellido"];
+        $lastName = $_POST["apellido"];
         $adress = $_POST["direccion"];
         $movilNumber = $_POST["telefono"];
         $time = $_POST["franjahoraria"];
@@ -76,9 +76,9 @@ class CitizenController
          */
         if (
             empty($name) ||
-            empty($lastname) ||
+            empty($lastName) ||
             empty($adress) ||
-            empty($movilnumber) ||
+            empty($movilNumber) ||
             empty($time) ||
             empty($materialsVol)
         ) {
@@ -99,7 +99,7 @@ class CitizenController
             $_FILES["subirfotos"]["type"] == "image/jpeg" ||
             $_FILES["subirfotos"]["type"] == "image/png"
         ) {
-            $imagename = $this->uniqueSaveName(
+            $imageName = $this->uniqueSaveName(
                 $_FILES["subirfotos"]["name"],
                 $_FILES["subirfotos"]["tmp_name"]
             );
