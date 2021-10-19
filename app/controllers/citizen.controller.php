@@ -1,116 +1,137 @@
 <?php
-include_once 'app/views/citizen.view.php';
+include_once "app/views/citizen.view.php";
 
 class CitizenController
 {
-  private $view;
-  private $data;
-
-  /**
-   * Se crea objeto de vista asociada.
-   */
-  function __construct()
-  {
-    $this->view = new CitizenView();
-    $this->data = file_get_contents('mocks/acceptedMaterials.json');
-  }
-
-  /**
-   * Manda a mostrar la pagina de inicio.
-   */
-  function showHome()
-  {
-    $this->view->showHome();
-  }
-
-  /**
-   * Manda a mostrar el listado de materiales aceptados.
-   */
-  function showAcceptedMaterials()
-  {
-    $jsonMaterials = json_decode($this->data);
-    $this->view->showAcceptedMaterials($jsonMaterials);
-  }
-
-  /**
-   * Manda a mostrar la pagina para visualizar las condiciones de un material en particular.
-   */
-  function showDeliveryConditions($id)
-  {
-    $json = json_decode($this->data, true);
-    if ($json[$id]) {
-      $deliveryMethod = $json[$id]['deliveryMethod'];
-      $material = $json[$id]['material'];
-      $image = $json[$id]['image'];
-      $this->view->showDeliveryConditions($deliveryMethod, $material, $image);
-    } else {
-      $this->view->showError404();
-    }
-  }
-  /**
-   * Manda a mostrar la pagina para registrar un pedido de retiro.
-   */
-  function showRegisterRetirementRequest()
-  {
-    $this->view->showRegisterRetirementRequest();
-  }
-
-  /**
-   * Verificacion de registro de orden.
-   */
-  function registerRetirementRequest()
-  {
-    $name = $_POST['nombre'];
-    $lastname = $_POST['apellido'];
-    $adress = $_POST['direccion'];
-    $movilnumber = $_POST['telefono'];
-    $time = $_POST['franjahoraria'];
-    $materialsvol = $_POST['volmateriales'];
-
+    private $view;
+    private $data;
 
     /**
-     *  verificacion de formulario 
+     * Se crea objeto de vista asociada.
      */
-    if (empty($name) || empty($lastname) || empty($adress) || empty($movilnumber) || empty($time) || empty($materialsvol)) 
+    function __construct()
     {
-      $this->view->showRegisterRetirementRequest('Faltan datos obligatorios para la orden.');
-      die();
-    }
-    if (strlen((string)$movilnumber) < 8) 
-    {
-      $this->view->showRegisterRetirementRequest('El numero de telefono tiene que tener al menos 8 numeros.');
-      die();
+        $this->view = new CitizenView();
+        $this->data = file_get_contents("mocks/acceptedMaterials.json");
     }
 
-    if ($_FILES['subirfotos']['type'] == "image/jpg" || $_FILES['subirfotos']['type'] == "image/jpeg" || $_FILES['subirfotos']['type'] == "image/png") 
+    /**
+     * Manda a mostrar la pagina de inicio.
+     */
+    function showHome()
     {
-      $imagename = $this->uniqueSaveName($_FILES['subirfotos']['name'], $_FILES['subirfotos']['tmp_name']);
+        $this->view->showHome();
     }
-     
-    $this->view->showRegisterRetirementRequest('Formulario enviado con exito!');
-  }
 
+    /**
+     * Manda a mostrar el listado de materiales aceptados.
+     */
+    function showAcceptedMaterials()
+    {
+        $jsonMaterials = json_decode($this->data);
+        $this->view->showAcceptedMaterials($jsonMaterials);
+    }
 
-  /**
-   *Guardado de imagenes
-   */
-  function uniqueSaveName($realName, $tempName)
-  {
+    /**
+     * Manda a mostrar la pagina para visualizar las condiciones de un material en particular.
+     */
+    function showDeliveryConditions($id)
+    {
+        $json = json_decode($this->data, true);
+        if ($json[$id]) {
+            $deliveryMethod = $json[$id]["deliveryMethod"];
+            $material = $json[$id]["material"];
+            $image = $json[$id]["image"];
+            $this->view->showDeliveryConditions(
+                $deliveryMethod,
+                $material,
+                $image
+            );
+        } else {
+            $this->view->showError404();
+        }
+    }
+    /**
+     * Manda a mostrar la pagina para registrar un pedido de retiro.
+     */
+    function showRegisterRetirementRequest()
+    {
+        $this->view->showRegisterRetirementRequest();
+    }
 
-    $filePath = "images/" . uniqid("", true) . "." . strtolower(pathinfo($realName, PATHINFO_EXTENSION));
+    /**
+     * Verificacion de registro de orden.
+     */
+    function registerRetirementRequest()
+    {
+        $name = $_POST["nombre"];
+        $lastname = $_POST["apellido"];
+        $adress = $_POST["direccion"];
+        $movilNumber = $_POST["telefono"];
+        $time = $_POST["franjahoraria"];
+        $materialsVol = $_POST["volmateriales"];
 
-    move_uploaded_file($tempName, $filePath);
+        /**
+         *  verificacion de formulario
+         */
+        if (
+            empty($name) ||
+            empty($lastname) ||
+            empty($adress) ||
+            empty($movilnumber) ||
+            empty($time) ||
+            empty($materialsVol)
+        ) {
+            $this->view->showRegisterRetirementRequest(
+                "Faltan datos obligatorios para la orden."
+            );
+            die();
+        }
+        if (strlen((string) $movilNumber) < 8) {
+            $this->view->showRegisterRetirementRequest(
+                "El numero de telefono tiene que tener al menos 8 numeros."
+            );
+            die();
+        }
 
-    return $filePath;
-  }
+        if (
+            $_FILES["subirfotos"]["type"] == "image/jpg" ||
+            $_FILES["subirfotos"]["type"] == "image/jpeg" ||
+            $_FILES["subirfotos"]["type"] == "image/png"
+        ) {
+            $imagename = $this->uniqueSaveName(
+                $_FILES["subirfotos"]["name"],
+                $_FILES["subirfotos"]["tmp_name"]
+            );
+        }
 
+        $this->view->showRegisterRetirementRequest(
+            "Formulario enviado con exito!"
+        );
+    }
 
-  /**
-   * Manda a mostrar error 404 si la URL llega inválida.
-   */
-  function showError404()
-  {
-    header('HTTP/1.0 404 Not Found');
-    $this->view->showError404();
-  }
+    /**
+     *Guardado de imagenes
+     */
+    function uniqueSaveName($realName, $tempName)
+    {
+        $filePath =
+            "images/" .
+            uniqid("", true) .
+            "." .
+            strtolower(pathinfo($realName, PATHINFO_EXTENSION));
+
+        move_uploaded_file($tempName, $filePath);
+
+        return $filePath;
+    }
+
+    /**
+     * Manda a mostrar error 404 si la URL llega inválida.
+     */
+    function showError404()
+    {
+        header("HTTP/1.0 404 Not Found");
+        $this->view->showError404();
+    }
 }
