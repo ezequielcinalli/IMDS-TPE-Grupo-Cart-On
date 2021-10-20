@@ -24,34 +24,6 @@ class CitizenController
     }
 
     /**
-     * Manda a mostrar el listado de materiales aceptados.
-     */
-    function showAcceptedMaterials()
-    {
-        $jsonMaterials = json_decode($this->data);
-        $this->view->showAcceptedMaterials($jsonMaterials);
-    }
-
-    /**
-     * Manda a mostrar la pagina para visualizar las condiciones de un material en particular.
-     */
-    function showDeliveryConditions($id)
-    {
-        $json = json_decode($this->data, true);
-        if ($json[$id]) {
-            $deliveryMethod = $json[$id]["deliveryMethod"];
-            $material = $json[$id]["material"];
-            $image = $json[$id]["image"];
-            $this->view->showDeliveryConditions(
-                $deliveryMethod,
-                $material,
-                $image
-            );
-        } else {
-            $this->view->showError404();
-        }
-    }
-    /**
      * Manda a mostrar la pagina para registrar un pedido de retiro.
      */
     function showRegisterRetirementRequest()

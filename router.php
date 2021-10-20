@@ -31,12 +31,12 @@ switch ($params[0]) {
         $controllerCitizen->showHome();
         break;
     case "materiales-aceptados":
-        $controllerCitizen->showAcceptedMaterials();
+        $controllerAcceptedMaterial->showAcceptedMaterials();
         break;
     case "condiciones-entrega":
         // el parametro [1] indica el id o nombre
         if (isset($params[1])) {
-            $controllerCitizen->showDeliveryConditions($params[1]);
+            $controllerAcceptedMaterial->showDeliveryConditions($params[1]);
         } else {
             $controllerCitizen->showError404();
         }
