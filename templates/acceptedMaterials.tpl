@@ -13,11 +13,10 @@
           </tr>
         </thead>
         <tbody>
-          {counter start=-1 print=false}  {* Inicia un contador en -1 e incrementa +1 en cada iteracion para generar el ID del link *}
           {foreach from=$materials_a item=$mat}          
           <tr>
             <td>- {$mat->material}</td>
-            <td class="text-center"><a class="btn btn-primary btn-sm" href="condiciones-entrega/{counter}"> VER DETALLES</a></td>           
+            <td class="text-center"><a class="btn btn-primary btn-sm" href="condiciones-entrega/{$mat->id}"> VER DETALLES</a></td>           
           </tr>
           {/foreach}
         </tbody>

@@ -24,18 +24,18 @@ class CitizenView
      */
     function showAcceptedMaterials($materials)
     {
-        $this->smarty->assign("materials_a", $materials);
+        $this->smarty->assign("materials_s", $materials);
         $this->smarty->display("templates/acceptedMaterials.tpl");
     }
 
     /**
      * Muestra las condiciones de entrega del material.
      */
-    function showDeliveryConditions($method, $material, $img)
+    function showDeliveryConditions($material)
     {
-        $this->smarty->assign("material_s", $material);
-        $this->smarty->assign("deliveryMethod_s", $method);
-        $this->smarty->assign("img_s", $img);
+        $this->smarty->assign("material_s", $material->material);
+        $this->smarty->assign("deliveryMethod_s", $material->deliveryMethod);
+        $this->smarty->assign("img_s", $material->image);
         $this->smarty->display("templates/deliveryConditions.tpl");
     }
 
