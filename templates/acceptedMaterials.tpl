@@ -13,7 +13,7 @@
           </tr>
         </thead>
         <tbody>
-          {foreach from=$materials_a item=$mat}          
+          {foreach from=$materials_s item=$mat}          
           <tr>
             <td>- {$mat->material}</td>
             <td class="text-center"><a class="btn btn-primary btn-sm" href="condiciones-entrega/{$mat->id}"> VER DETALLES</a></td>           
