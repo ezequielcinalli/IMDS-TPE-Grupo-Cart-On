@@ -12,14 +12,6 @@ class CitizenView
     }
 
     /**
-     * Muestra la pagina de inicio.
-     */
-    function showHome()
-    {
-        $this->smarty->display("templates/home.tpl");
-    }
-
-    /**
      * Muestra los materiales aceptados.
      */
     function showAcceptedMaterials($materials)

@@ -1,6 +1,7 @@
 <?php
 include_once "app/controllers/acceptedMaterial.controller.php";
 include_once "app/controllers/citizen.controller.php";
+include_once "app/controllers/main.controller.php";
 include_once 'app/helpers/db.helper.php';
 
 // defino la base url para la construccion de links con urls semánticas
@@ -23,12 +24,13 @@ if (!empty($_GET["action"])) {
 
 $params = explode("/", $action);
 $controllerCitizen = new CitizenController();
+$controllerMain = new MainController();
 $controllerAcceptedMaterial = new AcceptedMaterialController();
 
 // determina que camino seguir según la acción
 switch ($params[0]) {
     case "home":
-        $controllerCitizen->showHome();
+        $controllerMain->showHome();
         break;
     case "materiales-aceptados":
         $controllerAcceptedMaterial->showAcceptedMaterials();

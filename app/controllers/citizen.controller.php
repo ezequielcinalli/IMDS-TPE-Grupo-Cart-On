@@ -4,7 +4,6 @@ include_once "app/views/citizen.view.php";
 class CitizenController
 {
     private $view;
-    private $data;
 
     /**
      * Se crea objeto de vista asociada.
@@ -12,15 +11,6 @@ class CitizenController
     function __construct()
     {
         $this->view = new CitizenView();
-        $this->data = file_get_contents("mocks/acceptedMaterials.json");
-    }
-
-    /**
-     * Manda a mostrar la pagina de inicio.
-     */
-    function showHome()
-    {
-        $this->view->showHome();
     }
 
     /**
