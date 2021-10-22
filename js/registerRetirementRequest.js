@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", scriptRegistro);
 
 //agrega listener al formulario
 function scriptRegistro() {
-    let formretiro = document.querySelector("#formretiro");
-    formretiro.addEventListener("submit", (e) => {
+    let formRetiro = document.querySelector("#formretiro");
+    formRetiro.addEventListener("submit", (e) => {
         e.preventDefault();
         validarRegistro();
     });
@@ -70,7 +70,7 @@ function scriptRegistro() {
         }
 
         if (validacion) {
-            formretiro.submit();
+            formRetiro.submit();
         }
     }
 }
