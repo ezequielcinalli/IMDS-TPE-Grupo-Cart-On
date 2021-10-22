@@ -1,76 +1,76 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", scriptRegistro);
+document.addEventListener("DOMContentLoaded", scriptRegistration);
 
 //agrega listener al formulario
-function scriptRegistro() {
-    let formRetiro = document.querySelector("#formretiro");
-    formRetiro.addEventListener("submit", (e) => {
+function scriptRegistration() {
+    let withdrawForm = document.querySelector("#formretiro");
+    withdrawForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        validarRegistro();
+        formValidation();
     });
 
     // valida los campos del formulario antes de hacer el submit
-    function validarRegistro() {
-        let inputNombre = document.querySelector("#inputNombre");
-        let inputApellido = document.querySelector("#inputApellido");
-        let inputDireccion = document.querySelector("#inputDireccion");
-        let inputTelefono = document.querySelector("#inputTelefono");
-        let inputFHoraria = document.querySelector("#inputFHoraria");
-        let inputVolMateriales = document.querySelector("#inputVolMateriales");
-        let validacion = true;
+    function formValidation() {
+        let inputName = document.querySelector("#inputNombre");
+        let inputSurname = document.querySelector("#inputApellido");
+        let inputAddress = document.querySelector("#inputDireccion");
+        let inputPhone = document.querySelector("#inputTelefono");
+        let inputTimeSlot = document.querySelector("#inputFHoraria");
+        let inputMaterialVol = document.querySelector("#inputVolMateriales");
+        let isFormValid = true;
 
-        if (inputNombre.value == null || inputNombre.value.length == 0) {
-            inputNombre.className = "form-control w-100 is-invalid";
-            validacion = false;
+        if (inputName.value == null || inputName.value.length == 0) {
+            inputName.className = "form-control w-100 is-invalid";
+            isFormValid = false;
         } else {
-            inputNombre.className = "form-control w-100 is-valid";
+            inputName.className = "form-control w-100 is-valid";
         }
 
-        if (inputApellido.value == null || inputApellido.value.length == 0) {
-            inputApellido.className = "form-control w-100 is-invalid";
-            validacion = false;
+        if (inputSurname.value == null || inputSurname.value.length == 0) {
+            inputSurname.className = "form-control w-100 is-invalid";
+            isFormValid = false;
         } else {
-            inputApellido.className = "form-control w-100 is-valid";
+            inputSurname.className = "form-control w-100 is-valid";
         }
 
-        if (inputDireccion.value == null || inputDireccion.value.length == 0) {
-            inputDireccion.className = "form-control w-100 is-invalid";
-            validacion = false;
+        if (inputAddress.value == null || inputAddress.value.length == 0) {
+            inputAddress.className = "form-control w-100 is-invalid";
+            isFormValid = false;
         } else {
-            inputDireccion.className = "form-control w-100 is-valid";
-        }
-
-        if (
-            inputTelefono.value == null ||
-            inputTelefono.value.length == 0 ||
-            inputTelefono.value.length < 8
-        ) {
-            inputTelefono.className = "form-control w-100 is-invalid";
-            validacion = false;
-        } else {
-            inputTelefono.className = "form-control w-100 is-valid";
-        }
-
-        if (inputFHoraria.value == null || inputFHoraria.value.length == 0) {
-            inputFHoraria.className = "form-control w-100 is-invalid";
-            validacion = false;
-        } else {
-            inputFHoraria.className = "form-control w-100 is-valid";
+            inputAddress.className = "form-control w-100 is-valid";
         }
 
         if (
-            inputVolMateriales == null ||
-            inputVolMateriales.value.length == 0
+            inputPhone.value == null ||
+            inputPhone.value.length == 0 ||
+            inputPhone.value.length < 8
         ) {
-            inputVolMateriales.className = "form-control w-100 is-invalid";
-            validacion = false;
+            inputPhone.className = "form-control w-100 is-invalid";
+            isFormValid = false;
         } else {
-            inputVolMateriales.className = "form-control w-100 is-valid";
+            inputPhone.className = "form-control w-100 is-valid";
         }
 
-        if (validacion) {
-            formRetiro.submit();
+        if (inputTimeSlot.value == null || inputTimeSlot.value.length == 0) {
+            inputTimeSlot.className = "form-control w-100 is-invalid";
+            isFormValid = false;
+        } else {
+            inputTimeSlot.className = "form-control w-100 is-valid";
+        }
+
+        if (
+            inputMaterialVol == null ||
+            inputMaterialVol.value.length == 0
+        ) {
+            inputMaterialVol.className = "form-control w-100 is-invalid";
+            isFormValid = false;
+        } else {
+            inputMaterialVol.className = "form-control w-100 is-valid";
+        }
+
+        if (isFormValid) {
+            withdrawForm.submit();
         }
     }
 }
