@@ -10,7 +10,7 @@ class AcceptedMaterialController
   function __construct()
   {
     $this->model = new AcceptedMaterialModel();
-    $this->view = new CitizenView();
+    $this->view = new AcceptedMaterialView();
   }
 
   /**
