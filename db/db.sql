@@ -63,7 +63,8 @@ CREATE TABLE `retirement_request` (
   `retirement_time` varchar(50) NOT NULL,
   `volume_materials` varchar(50) NOT NULL,
   `image` int(11) DEFAULT NULL,
-  `completed` tinyint(1) NOT NULL DEFAULT 0
+  `completed` tinyint(1) NOT NULL DEFAULT 0,
+  `creation_date` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
