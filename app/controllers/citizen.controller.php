@@ -1,9 +1,11 @@
 <?php
 include_once "app/views/citizen.view.php";
+include_once "app/views/main.view.php";
 
 class CitizenController
 {
   private $view;
+  private $viewMain;
 
   /**
    * Se crea objeto de vista asociada.
@@ -11,6 +13,7 @@ class CitizenController
   function __construct()
   {
     $this->view = new CitizenView();
+    $this->viewMain = new MainView();
   }
 
   /**
@@ -92,6 +95,6 @@ class CitizenController
   function showError404()
   {
     header("HTTP/1.0 404 Not Found");
-    $this->view->showError404();
+    $this->viewMain->showError404();
   }
 }

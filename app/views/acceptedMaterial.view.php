@@ -30,12 +30,4 @@ class AcceptedMaterialView
     $this->smarty->assign("img_s", $material->image);
     $this->smarty->display("templates/deliveryConditions.tpl");
   }
-
-  /**
-   * Muestra mensaje de error 404.
-   */
-  function showError404()
-  {
-    $this->smarty->display("templates/error404.tpl");
-  }
 }

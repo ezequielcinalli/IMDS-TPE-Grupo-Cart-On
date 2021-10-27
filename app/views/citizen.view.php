@@ -19,12 +19,4 @@ class CitizenView
     $this->smarty->assign("msj", $msj);
     $this->smarty->display("templates/registerRetirementRequest.tpl");
   }
-
-  /**
-   * Muestra mensaje de error 404.
-   */
-  function showError404()
-  {
-    $this->smarty->display("templates/error404.tpl");
-  }
 }

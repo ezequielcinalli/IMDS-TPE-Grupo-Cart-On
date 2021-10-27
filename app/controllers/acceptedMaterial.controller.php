@@ -1,16 +1,19 @@
 <?php
 include_once "app/models/acceptedMaterial.model.php";
 include_once "app/views/acceptedMaterial.view.php";
+include_once "app/views/main.view.php";
 
 class AcceptedMaterialController
 {
   private $model;
   private $view;
+  private $viewMain;
 
   function __construct()
   {
     $this->model = new AcceptedMaterialModel();
     $this->view = new AcceptedMaterialView();
+    $this->viewMain = new MainView();
   }
 
   /**
@@ -33,7 +36,7 @@ class AcceptedMaterialController
     if ($material) {
       $this->view->showDeliveryConditions($material);
     } else {
-      $this->view->showError404();
+      $this->viewMain->showError404();
     }
   }
 }

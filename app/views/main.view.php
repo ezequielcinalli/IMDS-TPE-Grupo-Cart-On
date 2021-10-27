@@ -10,11 +10,20 @@ class MainView
     $this->smarty = new Smarty();
     $this->smarty->assign("BASE_URL", BASE_URL);
   }
+
   /**
    * Muestra la pagina de inicio.
    */
   function showHome()
   {
     $this->smarty->display("templates/home.tpl");
+  }
+
+  /**
+   * Muestra mensaje de error 404.
+   */
+  function showError404()
+  {
+    $this->smarty->display("templates/error404.tpl");
   }
 }
