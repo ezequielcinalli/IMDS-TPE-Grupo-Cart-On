@@ -18,6 +18,60 @@ class SecretaryController{
     $this->viewMain = new MainView();
   }
 
+  /**
+   * Construye un nombre unico de archivo y lo mueve a la carpeta de img
+   */
+  function uniqueSaveName($realName, $temporalName){
+    $filePath = "images/" . uniqid("", true) . "."
+        . strtolower(pathinfo($realName, PATHINFO_EXTENSION));
 
+    move_uploaded_file($temporalName, $filePath); //funcion que mueve archivos
 
+    return $filePath; 
+  }
+
+  /**
+   * Agrega un nuevo material aceptado a la DB
+   */
+  function addAcceptedMaterial(){
+
+    $material = $_POST['material'];
+    $deliveryMethod = $_POST['deliveryMethod'];
+
+    if (empty($material) || empty($deliveryMethod)){
+      $this->viewMain->showError404();
+      die();
+    } 
+
+    if($_FILES['input_name']['type'] == "image/jpg" ||
+      $_FILES['input_name']['type'] == "image/jpeg" ||
+      $_FILES['input_name']['type'] == "image/png"){ //si es alguno de estos formatos de imagen
+        $realName= $this->uniqueSaveName(
+          $_FILES['input_name']['name'], //nombre real aporta la extension del archivo
+          $_FILES['input_name']['tmp_name']
+        ); 
+        $success= $this->model->insert($material, $deliveryMethod, $realName);
+    }
+    else{
+        $success= $this->model->insert($material, $deliveryMethod);
+    }
+
+    // redirigimos al listado
+    if($success){
+      header("Location: " . BASE_URL. "admin-materiales");
+    }  
+    else { 
+      $this->viewMain->showError404();
+    }
+  }
+
+  /**
+   * Manda a mostrar la vista de ABM de los materiales
+   */
+  function showSecretaryMaterials(){ 
+
+    $materials= $this->model-> getAll();
+    //actualizo la vista
+    $this->view->printSecretaryMaterials($materials);    
+  }
 }
