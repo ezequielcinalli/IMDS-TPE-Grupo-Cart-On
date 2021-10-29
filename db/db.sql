@@ -4,7 +4,7 @@ CREATE DATABASE imds_tpe;
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2021 a las 07:58:27
+-- Tiempo de generación: 29-10-2021 a las 01:29:02
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.6
 
@@ -32,7 +32,7 @@ CREATE TABLE `accepted_material` (
   `id` int(11) NOT NULL,
   `material` varchar(50) NOT NULL,
   `deliveryMethod` varchar(50) NOT NULL,
-  `image` varchar(50) NOT NULL
+  `image` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -63,8 +63,7 @@ CREATE TABLE `retirement_request` (
   `retirement_time` varchar(50) NOT NULL,
   `volume_materials` varchar(50) NOT NULL,
   `image` int(11) DEFAULT NULL,
-  `completed` tinyint(1) NOT NULL DEFAULT 0,
-  `creation_date` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `completed` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
