@@ -51,4 +51,26 @@ class AcceptedMaterialModel{
         return $material;
       }
 
+    /****************************  SECRETARY   ************************************** */
+    /**
+     * Inserta el material reciclable en DB
+     */
+    function insert($material, $deliveryMethod, $img=null) { 
+
+      if($img){ //si existe
+        $sql = 'INSERT INTO accepted_material(material, deliveryMethod, image) VALUES (?,?,?)';
+        $params = [$material, $deliveryMethod, $img];
+      } else{ //si no existe
+        $sql = 'INSERT INTO accepted_material(material, deliveryMethod) VALUES (?,?)';
+        $params = [$material, $deliveryMethod];
+
+      }
+
+      // 2. Enviar la consulta (2 sub-pasos: prepare y execute)
+      $query = $this->db->prepare($sql);
+      $query->execute($params); 
+
+      // 3. obtiene y devuelve ID del material nuevo
+      return $this->db->lastInsertId(); 
+    }
 }
