@@ -36,6 +36,11 @@
                             Solicitar pedido de retiro
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="admin-materiales">
+                            Secretaria
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

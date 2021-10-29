@@ -1,6 +1,7 @@
 <?php
 include_once "app/controllers/acceptedMaterial.controller.php";
 include_once "app/controllers/citizen.controller.php";
+include_once "app/controllers/secretary.controller.php";
 include_once "app/controllers/main.controller.php";
 include_once 'app/helpers/db.helper.php';
 
