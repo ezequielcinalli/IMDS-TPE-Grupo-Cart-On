@@ -1,7 +1,7 @@
 <div class="formulario col-4 mt-5">
     <h3>Agregar nuevo material</h3>
     <!-- formulario de alta -->
-    <form action="insertarMaterial" method="POST" class="my-4" enctype="multipart/form-data">
+    <form action="insertar-material" method="POST" class="my-4" enctype="multipart/form-data">
       <div class="row">
           <div class="col-10">
               <div class="form-group">
