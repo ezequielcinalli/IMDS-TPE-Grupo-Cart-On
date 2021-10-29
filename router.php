@@ -49,6 +49,16 @@ switch ($params[0]) {
     case "enviar-orden":
         $controllerCitizen->registerRetirementRequest();
         break;
+    case 'admin-materiales': // sección ABM de materiales
+        $controller= new SecretaryController();
+        $controller->showSecretaryMaterials();
+        break;
+    //ABM materiales
+    //ADMIN
+    case 'insertar-material': //form de admin. boton agregar
+        $controller= new SecretaryController();
+        $controller->addAcceptedMaterial();
+        break;
     default:
         $controllerCitizen->showError404();
         break;
