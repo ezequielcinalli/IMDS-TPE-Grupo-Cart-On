@@ -15,7 +15,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container justify-content-between">
+        <div class="container-fluid justify-content-between">
 
             <a class="navbar-brand" href="">Cooperativa de reciclaje Cart-On</a>
 
@@ -36,12 +36,34 @@
                             Solicitar pedido de retiro
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="admin-materiales">
-                            Secretaria
-                        </a>
-                    </li>
                 </ul>
+
+                <div>
+                    {* display the php session ($_SESSION) *}
+                    {if !$smarty.session}
+                        <a href="login" class="btn btn-primary">Iniciar sesion</a>
+                    {else}
+                        <div class="d-flex">
+                            <div class="dropdown">
+                                <button type="button" id="dropdownAdmin" class="btn btn-outline-light dropdown-toggle me-4 mt-1" data-bs-toggle="dropdown">
+                                    Administrar
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownAdmin" >
+                                    <a class="dropdown-item" href="admin-materiales">Materiales aceptados</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button type="button" id="dropdownLogout" class="btn btn-outline-light dropdown-toggle ml-4 mt-1" data-bs-toggle="dropdown">
+                                  {$smarty.session.EMAIL}
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLogout">
+                                    <a class="dropdown-item" href="logout">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
+                </div>
+
             </div>
         </div>
     </nav>
