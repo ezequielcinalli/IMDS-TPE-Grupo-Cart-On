@@ -27,6 +27,7 @@ $params = explode("/", $action);
 $controllerCitizen = new CitizenController();
 $controllerMain = new MainController();
 $controllerAcceptedMaterial = new AcceptedMaterialController();
+$controllerSecretary= new SecretaryController();
 
 // determina que camino seguir según la acción
 switch ($params[0]) {
@@ -51,14 +52,12 @@ switch ($params[0]) {
         $controllerCitizen->registerRetirementRequest();
         break;
     case 'admin-materiales': // sección ABM de materiales
-        $controller= new SecretaryController();
-        $controller->showSecretaryMaterials();
+        $controllerSecretary->showSecretaryMaterials();
         break;
     //ABM materiales
     //ADMIN
     case 'insertar-material': //form de admin. boton agregar
-        $controller= new SecretaryController();
-        $controller->addAcceptedMaterial();
+        $controllerSecretary->addAcceptedMaterial();
         break;
     default:
         $controllerCitizen->showError404();
