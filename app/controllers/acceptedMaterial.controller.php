@@ -29,8 +29,13 @@ class AcceptedMaterialController
   /**
    * Manda a mostrar un material por id.
    */
-  function showDeliveryConditions($id)
+  function showDeliveryConditions($params)
   {
+    $id = 0;
+    if (isset($params[1])) {
+      $id = $params[1];
+    } 
+
     $material = $this->model->getMaterial($id);
 
     if ($material) {
@@ -38,5 +43,7 @@ class AcceptedMaterialController
     } else {
       $this->viewMain->showError404();
     }
+
   }
+
 }

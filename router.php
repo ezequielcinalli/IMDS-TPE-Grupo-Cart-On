@@ -1,6 +1,7 @@
 <?php
 include_once "app/controllers/acceptedMaterial.controller.php";
 include_once "app/controllers/citizen.controller.php";
+include_once "app/controllers/auth.controller.php";
 include_once "app/controllers/secretary.controller.php";
 include_once "app/controllers/main.controller.php";
 include_once 'app/helpers/db.helper.php';
@@ -27,6 +28,7 @@ $params = explode("/", $action);
 $controllerMain = new MainController();
 $controllerCitizen = new CitizenController();
 $controllerAcceptedMaterial = new AcceptedMaterialController();
+$controllerAuth= new AuthController();
 $controllerSecretary= new SecretaryController();
 
 // determina que camino seguir según la acción
@@ -42,19 +44,17 @@ switch ($params[0]) {
         $controllerAcceptedMaterial->showAcceptedMaterials();
         break;
     case "condiciones-entrega":
-        if (isset($params[1])) {
-            $controllerAcceptedMaterial->showDeliveryConditions($params[1]);
-        } else {
-            $controllerMain->showError404();
-        }
+      $controllerAcceptedMaterial->showDeliveryConditions($params);
         break;
-        break;
-  //SECRETARY CONTROLLER LOGIN
+  //AUTH CONTROLLER 
     case 'login': 
-        $controllerSecretary->login();
+        $controllerAuth->login();
         break;
     case 'checkLogin': 
-        $controllerSecretary->checkLogin();
+        $controllerAuth->checkLogin();
+        break;
+    case 'logout': 
+        $controllerAuth->logout();
         break;
   //SECRETARY CONTROLLER - ADMIN SECTION
     case 'admin-materiales': // sección ABM de materiales

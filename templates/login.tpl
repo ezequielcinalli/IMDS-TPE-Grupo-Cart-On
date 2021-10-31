@@ -5,7 +5,7 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Iniciar sesión</h5>
-                    <form class="form-signin" action="usuarios/verificarIngreso" method="POST">
+                    <form class="form-signin" action="checkLogin" method="POST">
                         <div class="form-label-group mb-2">
                             <label for="email">Email</label>
                             <input name="email" id="email" type="email" class="form-control" required autofocus>

@@ -2,11 +2,13 @@
 include_once "app/models/acceptedMaterial.model.php";
 include_once "app/views/secretary.view.php";
 include_once "app/views/main.view.php";
+include_once 'app/helpers/auth.helper.php';
 
 class SecretaryController{
-    private $model;
-    private $view;
-    private $viewMain;
+  private $model;
+  private $view;
+  private $viewMain;
+  private $authHelper;
 
   /**
    * Se crea objeto de vista asociada.
@@ -16,6 +18,7 @@ class SecretaryController{
     $this->model = new AcceptedMaterialModel;
     $this->view = new SecretaryView();
     $this->viewMain = new MainView();
+    $this->authHelper = new AuthHelper();
   }
 
   /**
@@ -23,7 +26,7 @@ class SecretaryController{
    */
   function uniqueSaveName($realName, $temporalName){
     $filePath = "images/" . uniqid("", true) . "."
-        . strtolower(pathinfo($realName, PATHINFO_EXTENSION));
+      . strtolower(pathinfo($realName, PATHINFO_EXTENSION));
 
     move_uploaded_file($temporalName, $filePath); //funcion que mueve archivos
 
@@ -46,14 +49,14 @@ class SecretaryController{
     if($_FILES['input_name']['type'] == "image/jpg" ||
       $_FILES['input_name']['type'] == "image/jpeg" ||
       $_FILES['input_name']['type'] == "image/png"){ //si es alguno de estos formatos de imagen
-        $realName= $this->uniqueSaveName(
-          $_FILES['input_name']['name'], //nombre real aporta la extension del archivo
-          $_FILES['input_name']['tmp_name']
-        ); 
-        $success= $this->model->insert($material, $deliveryMethod, $realName);
+      $realName= $this->uniqueSaveName(
+        $_FILES['input_name']['name'], //nombre real aporta la extension del archivo
+        $_FILES['input_name']['tmp_name']
+      ); 
+      $success= $this->model->insert($material, $deliveryMethod, $realName);
     }
     else{
-        $success= $this->model->insert($material, $deliveryMethod);
+      $success= $this->model->insert($material, $deliveryMethod);
     }
 
     // redirigimos al listado
@@ -69,9 +72,9 @@ class SecretaryController{
    * Manda a mostrar la vista de ABM de los materiales
    */
   function showSecretaryMaterials(){ 
-
     $materials= $this->model-> getAll();
     //actualizo la vista
     $this->view->printSecretaryMaterials($materials);    
   }
+
 }

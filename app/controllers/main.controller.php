@@ -20,4 +20,13 @@ class MainController
   {
     $this->view->showHome();
   }
+
+  /**
+   * Manda a mostrar error 404 si la URL llega inválida.
+   */
+  function showError404()
+  {
+    header("HTTP/1.0 404 Not Found");
+    $this->viewMain->showError404();
+  }
 }
