@@ -19,6 +19,12 @@ El proyecto trata de una cooperativa de reciclaje que desea crear un sitio web p
 
 Se utilizara un backend php, con un motor de plantillas smarty para las vistas.
 
+## Usuarios
+
+| Email           | Password |
+| --------------- | -------- |
+| admin@admin.com | 123456   |
+
 ## Instrucciones setup servidor
 
 - Instalar [xampp](https://www.apachefriends.org/es/download.html)
@@ -26,5 +32,5 @@ Se utilizara un backend php, con un motor de plantillas smarty para las vistas.
   - Path htdocs en linux: /opt/lampp/htdocs/
   - Path htdocs en windows:
 - Dar permisos de escritura como administrador a la carpeta(para permitir a smarty crear archivos de compilacion)
-  - En linux parado en la raiz del proyecto: sudo chmod 777 templates_c/
+  - En linux parado en la raiz del proyecto: sudo mkdir templates_c/ && sudo chmod 777 templates_c/
 - Con el servicio apache iniciado dentro de xampp, en el entorno local correra en [localhost](http://localhost/IMDS-TPE-Grupo-Cart-On/)
