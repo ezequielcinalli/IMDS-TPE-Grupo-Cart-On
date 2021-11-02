@@ -1,10 +1,9 @@
-CREATE DATABASE imds_tpe;
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2021 a las 01:29:02
+-- Tiempo de generación: 02-11-2021 a las 23:17:21
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.6
 
@@ -21,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `imds_tpe`
 --
+CREATE DATABASE IF NOT EXISTS `imds_tpe` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `imds_tpe`;
 
 -- --------------------------------------------------------
 
@@ -31,7 +32,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `accepted_material` (
   `id` int(11) NOT NULL,
   `material` varchar(50) NOT NULL,
-  `deliveryMethod` varchar(50) NOT NULL,
+  `deliveryMethod` varchar(256) NOT NULL,
   `image` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

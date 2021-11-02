@@ -73,4 +73,13 @@ class AcceptedMaterialModel{
       // 3. obtiene y devuelve ID del material nuevo
       return $this->db->lastInsertId(); 
     }
+
+    /**
+     * Elimina el material reciclable en DB con el id pasado por parametro
+     */
+    function delete($id)
+    {
+        $query = $this->db->prepare('DELETE FROM accepted_material WHERE id = ?');
+        $query->execute([$id]);
+    }
 }

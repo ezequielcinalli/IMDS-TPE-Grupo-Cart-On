@@ -8,10 +8,10 @@
         <div class="col-10">    
         <table class="table">
             <thead>
-            <tr  class="text-center" >
+            <tr class="text-center">
                 <th scope="col">Tipo</th>
-                <th scope="col" >Borrar</th>
-                <th scope="col" >Editar</th>
+                <th scope="col">Borrar</th>
+                <th scope="col">Editar</th>
             </tr>
             </thead>
             <tbody>

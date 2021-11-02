@@ -77,4 +77,14 @@ class SecretaryController{
     $this->view->printSecretaryMaterials($materials);    
   }
 
+  /**
+   * Manda a confirmar eliminacion de material
+   */
+  function deleteAcceptedMaterial($id){
+    if (isset($id)) {
+      $this->authHelper->checkLoggedIn();    
+      $this->model->delete($id);
+    }
+    header('Location: ' . BASE_URL . 'admin-materiales');
+  }
 }

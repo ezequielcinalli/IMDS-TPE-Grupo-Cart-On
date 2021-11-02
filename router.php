@@ -63,6 +63,11 @@ switch ($params[0]) {
     case 'insertar-material': //form de admin. boton agregar
         $controllerSecretary->addAcceptedMaterial();
         break;
+    case 'eliminar-material': //form de admin. boton eliminar
+        if (isset($params[1])) {         
+          $controllerSecretary->deleteAcceptedMaterial($params[1]);
+        }
+      break;
   //MAIN CONTROLLER
     case "home":
         $controllerMain->showHome();

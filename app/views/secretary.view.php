@@ -14,7 +14,7 @@ class SecretaryView{
    * Muestra el listado de materiales reciclables, permitiendo realizar el ABM sobre los mismos.
    */
   function printSecretaryMaterials($materials){
-    $this->smarty->assign('titulo_s'," ABM Materiales reciclables aceptados");
+    $this->smarty->assign('titulo_s',"ABM Materiales reciclables aceptados");
     $this->smarty->assign('materials_s', $materials);
     $this->smarty->display('./templates/adminMaterials.tpl'); 
   }
