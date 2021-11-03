@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `imds_tpe`
 --
-
+CREATE DATABASE IF NOT EXISTS `imds_tpe` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `imds_tpe`;
 -- --------------------------------------------------------
 
 --
@@ -30,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `accepted_material` (
   `id` int(11) NOT NULL,
   `material` varchar(50) NOT NULL,
-  `deliveryMethod` varchar(50) NOT NULL,
+  `deliveryMethod` varchar(256) NOT NULL,
   `image` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
