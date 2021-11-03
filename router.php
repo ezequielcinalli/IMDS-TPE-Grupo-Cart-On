@@ -39,6 +39,7 @@ switch ($params[0]) {
         break;
     case "enviar-orden":
         $controllerCitizen->registerRetirementRequest();
+        break;
   //ACCEPTEDMATERIAL CONTROLLER
     case "materiales-aceptados":
         $controllerAcceptedMaterial->showAcceptedMaterials();
