@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-11-2021 a las 01:00:11
+-- Tiempo de generación: 03-11-2021 a las 07:38:57
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -51,11 +51,37 @@ INSERT INTO `accepted_material` (`id`, `material`, `deliveryMethod`, `image`) VA
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ingreso_reciclable`
+-- Estructura de tabla para la tabla `cartonero`
 --
 
-CREATE TABLE `ingreso_reciclable` (
-  `id_ingreso` int(11) NOT NULL,
+CREATE TABLE `cartonero` (
+  `id_cartonero` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `birthday` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cartonero`
+--
+
+INSERT INTO `cartonero` (`id_cartonero`, `name`, `lastname`, `email`, `address`, `birthday`) VALUES
+(0, 'Esteban', 'Purcell', 'ucrackmeup@hotmail.com', 'Bolivar 637', '1990-10-01'),
+(1, 'David', 'Sevilla', 'theduskdude@gmail.com', 'Azcuenaga 260', '1998-01-10'),
+(2, 'Juan', 'Romero', 'reven4n7@hotmail.com', 'Rivadavia 140', '1993-12-10'),
+(3, 'Jose', 'Cabello', 'techmagiccc@hotmail.com.ar', 'Liniers 500', '1992-05-05'),
+(4, 'Tomas', 'Salas', 'eloscuro410@gmail.com', 'Larrea 412', '1994-12-21');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `material_deposit`
+--
+
+CREATE TABLE `material_deposit` (
+  `id_deposit` int(11) NOT NULL,
   `id_cartonero` int(11) NOT NULL,
   `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -63,13 +89,13 @@ CREATE TABLE `ingreso_reciclable` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `renglon_ingreso`
+-- Estructura de tabla para la tabla `renglon_deposit`
 --
 
-CREATE TABLE `renglon_ingreso` (
-  `id_ingreso` int(11) NOT NULL,
+CREATE TABLE `renglon_deposit` (
+  `id_deposit` int(11) NOT NULL,
   `id_material` int(11) NOT NULL,
-  `peso` float NOT NULL
+  `weight` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -101,16 +127,23 @@ ALTER TABLE `accepted_material`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `ingreso_reciclable`
+-- Indices de la tabla `cartonero`
 --
-ALTER TABLE `ingreso_reciclable`
-  ADD PRIMARY KEY (`id_ingreso`);
+ALTER TABLE `cartonero`
+  ADD PRIMARY KEY (`id_cartonero`);
 
 --
--- Indices de la tabla `renglon_ingreso`
+-- Indices de la tabla `material_deposit`
 --
-ALTER TABLE `renglon_ingreso`
-  ADD PRIMARY KEY (`id_ingreso`,`id_material`);
+ALTER TABLE `material_deposit`
+  ADD PRIMARY KEY (`id_deposit`),
+  ADD KEY `FK_material_deposit_cartonero` (`id_cartonero`);
+
+--
+-- Indices de la tabla `renglon_deposit`
+--
+ALTER TABLE `renglon_deposit`
+  ADD PRIMARY KEY (`id_deposit`,`id_material`);
 
 --
 -- Indices de la tabla `retirement_request`
@@ -129,10 +162,16 @@ ALTER TABLE `accepted_material`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `ingreso_reciclable`
+-- AUTO_INCREMENT de la tabla `cartonero`
 --
-ALTER TABLE `ingreso_reciclable`
-  MODIFY `id_ingreso` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `cartonero`
+  MODIFY `id_cartonero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `material_deposit`
+--
+ALTER TABLE `material_deposit`
+  MODIFY `id_deposit` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `retirement_request`
@@ -145,10 +184,16 @@ ALTER TABLE `retirement_request`
 --
 
 --
--- Filtros para la tabla `renglon_ingreso`
+-- Filtros para la tabla `material_deposit`
 --
-ALTER TABLE `renglon_ingreso`
-  ADD CONSTRAINT `FK_ingreso_reciclable_rengon_ingreso` FOREIGN KEY (`id_ingreso`) REFERENCES `ingreso_reciclable` (`id_ingreso`);
+ALTER TABLE `material_deposit`
+  ADD CONSTRAINT `FK_material_deposit_cartonero` FOREIGN KEY (`id_cartonero`) REFERENCES `cartonero` (`id_cartonero`);
+
+--
+-- Filtros para la tabla `renglon_deposit`
+--
+ALTER TABLE `renglon_deposit`
+  ADD CONSTRAINT `FK_material_deposit_renglon_deposit` FOREIGN KEY (`id_deposit`) REFERENCES `material_deposit` (`id_deposit`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
