@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-11-2021 a las 23:17:21
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.6
+-- Tiempo de generación: 03-11-2021 a las 01:00:11
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `imds_tpe`
 --
-CREATE DATABASE IF NOT EXISTS `imds_tpe` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `imds_tpe`;
 
 -- --------------------------------------------------------
 
@@ -32,7 +30,7 @@ USE `imds_tpe`;
 CREATE TABLE `accepted_material` (
   `id` int(11) NOT NULL,
   `material` varchar(50) NOT NULL,
-  `deliveryMethod` varchar(256) NOT NULL,
+  `deliveryMethod` varchar(50) NOT NULL,
   `image` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -48,6 +46,30 @@ INSERT INTO `accepted_material` (`id`, `material`, `deliveryMethod`, `image`) VA
 (5, 'Latas de conserva', 'Debe estar seco y limpio. Sacar la etiqueta si es ', 'images/latas.jpg'),
 (6, 'Papel', 'Debe estar seco y limpio. Se aceptan de todos los ', 'images/papel.jpg'),
 (7, 'Tetrabrik', 'Debe estar seco y limpio. Sacar la tapa si es que ', 'images/tetra.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ingreso_reciclable`
+--
+
+CREATE TABLE `ingreso_reciclable` (
+  `id_ingreso` int(11) NOT NULL,
+  `id_cartonero` int(11) NOT NULL,
+  `fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `renglon_ingreso`
+--
+
+CREATE TABLE `renglon_ingreso` (
+  `id_ingreso` int(11) NOT NULL,
+  `id_material` int(11) NOT NULL,
+  `peso` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -78,6 +100,18 @@ ALTER TABLE `accepted_material`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `ingreso_reciclable`
+--
+ALTER TABLE `ingreso_reciclable`
+  ADD PRIMARY KEY (`id_ingreso`);
+
+--
+-- Indices de la tabla `renglon_ingreso`
+--
+ALTER TABLE `renglon_ingreso`
+  ADD PRIMARY KEY (`id_ingreso`,`id_material`);
+
+--
 -- Indices de la tabla `retirement_request`
 --
 ALTER TABLE `retirement_request`
@@ -94,10 +128,26 @@ ALTER TABLE `accepted_material`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT de la tabla `ingreso_reciclable`
+--
+ALTER TABLE `ingreso_reciclable`
+  MODIFY `id_ingreso` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `retirement_request`
 --
 ALTER TABLE `retirement_request`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `renglon_ingreso`
+--
+ALTER TABLE `renglon_ingreso`
+  ADD CONSTRAINT `FK_ingreso_reciclable_rengon_ingreso` FOREIGN KEY (`id_ingreso`) REFERENCES `ingreso_reciclable` (`id_ingreso`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
