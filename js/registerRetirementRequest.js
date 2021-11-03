@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", scriptRegistration);
 
 //agrega listener al formulario
 function scriptRegistration() {
-    let withdrawForm = document.querySelector("#formretiro");
+    let withdrawForm = document.querySelector("#formRetiro");
     withdrawForm.addEventListener("submit", (e) => {
         e.preventDefault();
         formValidation();

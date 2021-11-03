@@ -16,7 +16,7 @@
         <h3 class='text-danger'>{$msj}</h3>
       </div>
     {/if}
-    <form action="enviar-orden" class="form-inline col-10" id="formretiro" enctype="multipart/form-data" method='POST'>
+    <form action="enviar-orden" class="form-inline col-10" id="formRetiro" enctype="multipart/form-data" method='POST'>
       <div class= "form-group w-100">
         <div class="row m-3">
           <div class="col">
