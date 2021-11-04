@@ -9,7 +9,9 @@ class cartoneroModel
         $this->db = $this->dbHelper->connect(); //Conexión a BBDD
     }
 
-    /* Retorna todos los cartoneros en la db */
+    /**
+     *  Retorna todos los cartoneros en la db 
+     */
     function getAll(){
         $sql = "SELECT * FROM cartonero";
 
@@ -20,7 +22,9 @@ class cartoneroModel
         return $cartoneros;
     }
 
-    /* Returna todos los cartoneros con el nombre indicado */
+    /**  
+     * Returna todos los cartoneros con el nombre indicado 
+     */
     function getCartoneroByName($name){
         $sql = "SELECT * FROM cartonero WHERE cartonero.name = $name OR cartonero.surname = $name";
 
@@ -31,14 +35,16 @@ class cartoneroModel
         return $cartoneros;
     }
 
-    /* Inserta un nuevo cartonero en el sistema*/
+    /**
+     * Inserta un nuevo cartonero en el sistema
+     */
     function insert($name, $surname, $email, $address, $birthday){
         $sql = "INSERT INTO cartonero (name, surname, email, address, birthday) VALUES (?,?,?,?,?)";
         $params = [$name, $surname, $email, $address, $birthday];
 
         $query = $this->db->prepare($sql);
         $query->execute($params);
-        return $this->db->lastInsertId()
+        return $this->db->lastInsertId();
     }
 }
     

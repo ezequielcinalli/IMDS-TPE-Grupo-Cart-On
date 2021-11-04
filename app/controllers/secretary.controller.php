@@ -87,4 +87,11 @@ class SecretaryController{
     }
     header('Location: ' . BASE_URL . 'admin-materiales');
   }
+
+  /**
+   * Manda a mostrar el formulario para el ingreso de reciclables
+   */
+  function showMaterialDeposit(){
+    echo("TODO: function");
+  }
 }
