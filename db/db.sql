@@ -109,7 +109,7 @@ CREATE TABLE `retirement_request` (
   `name` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `address` varchar(50) NOT NULL,
-  `phone` int(11) NOT NULL,
+  `phone` varchar(30) NOT NULL,
   `retirement_time` varchar(50) NOT NULL,
   `volume_materials` varchar(50) NOT NULL,
   `image` int(11) DEFAULT NULL,
