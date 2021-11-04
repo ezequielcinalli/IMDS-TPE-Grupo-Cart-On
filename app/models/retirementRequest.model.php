@@ -42,13 +42,13 @@ class RetirementRequestModel
    * Inserta los pedidos enviados por formulario en la base de datos
    */
 
-   function insert($name,$lastName,$adress,$movilNumber,$time,$materialsVol,$imageName=null){
+   function insert($name,$lastName,$address,$movilNumber,$time,$materialsVol,$imageName=null){
     if($imageName){
       $sql='INSERT INTO retirement_request (name,lastname,address,phone,retirement_time,volume_materials,image) VALUES (?,?,?,?,?,?,?)';
-      $params= [$name,$lastName,$adress,$movilNumber,$time,$materialsVol,$imageName];
+      $params= [$name,$lastName,$address,$movilNumber,$time,$materialsVol,$imageName];
     }else{
       $sql='INSERT INTO retirement_request (name,lastname,address,phone,retirement_time,volume_materials) VALUES (?,?,?,?,?,?)';
-      $params= [$name,$lastName,$adress,$movilNumber,$time,$materialsVol];
+      $params= [$name,$lastName,$address,$movilNumber,$time,$materialsVol];
     }  
     $query = $this->db->prepare($sql);
     $query->execute($params);

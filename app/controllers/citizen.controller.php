@@ -45,6 +45,14 @@ class CitizenController
     return $filePath;
   }
 
+   /**
+   * Chequea que la distancia entre la direccion pasado por parametro y la direccion de la recicladora
+   * sea menor a 6km, implementada con numeros aleatorios.
+   */
+  function distanceIsMinor6km($address){
+    return rand(0,1);
+  }
+
   /**
    * Verificacion de registro de orden.
    */
@@ -52,7 +60,7 @@ class CitizenController
   {
     $name = $_POST["nombre"];
     $lastName = $_POST["apellido"];
-    $adress = $_POST["direccion"];
+    $address = $_POST["direccion"];
     $movilNumber = $_POST["telefono"];
     $time = $_POST["franjahoraria"];
     $materialsVol = $_POST["volmateriales"];
@@ -63,7 +71,7 @@ class CitizenController
     if (
       empty($name) ||
       empty($lastName) ||
-      empty($adress) ||
+      empty($address) ||
       empty($movilNumber) ||
       empty($time) ||
       empty($materialsVol)
@@ -80,6 +88,13 @@ class CitizenController
       die();
     }
 
+    if(!$this->distanceIsMinor6km($address)){
+      $this->view->showRegisterRetirementRequest(
+        "La distancia de su hogar es mayor a 6km. Por favor acerquese personalmente a traer los materiales."
+      );
+      die();
+    }
+
     if (
       $_FILES["subirfotos"]["type"] == "image/jpg" ||
       $_FILES["subirfotos"]["type"] == "image/jpeg" ||
@@ -92,10 +107,8 @@ class CitizenController
     }else{
       $imageName = null;
     }
-    $insert = $this->model->insert($name,$lastName,$adress,intval($movilNumber),$time,$materialsVol,$imageName,$status);
-    var_dump($insert);
-    die();
-    $this->view->showRegisterRetirementRequest("Formulario enviado con exito!");
+    $insert = $this->model->insert($name,$lastName,$address,intval($movilNumber),$time,$materialsVol,$imageName,$status);
+    $this->view->showRegisterRetirementRequest("Solicitud de retiro creada con exito!");
   }
 
 }
