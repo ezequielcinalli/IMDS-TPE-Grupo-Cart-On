@@ -82,4 +82,21 @@ class AcceptedMaterialModel{
         $query = $this->db->prepare('DELETE FROM accepted_material WHERE id = ?');
         $query->execute([$id]);
     }
+
+    /**
+     * Actualiza el material reciclable en DB con el id pasado por parametro
+     */
+    function update($material, $deliveryMethod,$id, $img=null){
+       if($img){ //si existe
+         $sql = 'UPDATE accepted_material SET material= ?, deliveryMethod= ?, image= ? WHERE id = '.$id.' ';
+         $params = [$material, $deliveryMethod,$img];
+       } else{ //si no existe
+         $sql = 'UPDATE accepted_material SET material= ?, deliveryMethod= ? WHERE id ='.$id.' ';
+         $params = [$material, $deliveryMethod];
+       }
+         // 2. Enviar la consulta (2 sub-pasos: prepare y execute)
+         $query = $this->db->prepare($sql);
+         $result= $query->execute($params); 
+         return $result;
+     }
 }
