@@ -57,7 +57,7 @@ INSERT INTO `accepted_material` (`id`, `material`, `deliveryMethod`, `image`) VA
 CREATE TABLE `cartonero` (
   `id_cartonero` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `lastname` varchar(50) NOT NULL,
+  `surname` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `address` varchar(50) NOT NULL,
   `birthday` date NOT NULL

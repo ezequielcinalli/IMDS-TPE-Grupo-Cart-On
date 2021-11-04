@@ -69,6 +69,9 @@ switch ($params[0]) {
           $controllerSecretary->deleteAcceptedMaterial($params[1]);
         }
       break;
+    case 'ingreso-material' 
+        $controllerSecretary->showMaterialDeposit();
+        break;
   //MAIN CONTROLLER
     case "home":
         $controllerMain->showHome();
