@@ -1,7 +1,8 @@
 <?php
 require_once "libs/Smarty.class.php";
 
-class SecretaryView{
+class SecretaryView
+{
   private $smarty;
 
   function __construct()
@@ -13,10 +14,20 @@ class SecretaryView{
   /**
    * Muestra el listado de materiales reciclables, permitiendo realizar el ABM sobre los mismos.
    */
-  function printSecretaryMaterials($materials){
-    $this->smarty->assign('titulo_s',"ABM Materiales reciclables aceptados");
+  function printSecretaryMaterials($materials)
+  {
+    $this->smarty->assign('titulo_s', "ABM Materiales reciclables aceptados");
     $this->smarty->assign('materials_s', $materials);
-    $this->smarty->display('./templates/adminMaterials.tpl'); 
+    $this->smarty->display('./templates/adminMaterials.tpl');
   }
 
+  /**
+   * Muestra el formulario para ingresar materiales traidos por cartoneros/buena onda
+   */
+  function showMaterialDeposit($cartoneros, $materials)
+  {
+    $this->smarty->assign('cartoneros', $cartoneros);
+    $this->smarty->assign('materials', $materials);
+    $this->smarty->display('./templates/recyclableMaterialIncome.tpl');
+  }
 }

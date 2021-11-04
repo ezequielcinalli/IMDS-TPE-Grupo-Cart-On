@@ -8,7 +8,6 @@ class CitizenController
 {
   private $model;
   private $view;
-  private $viewMain;
 
   /**
    * Se crea objeto de vista asociada.
@@ -18,7 +17,6 @@ class CitizenController
   {
     $this->model = new RetirementRequestModel();
     $this->view = new CitizenView();
-    $this->viewMain = new MainView();
   }
 
   /**
@@ -45,12 +43,13 @@ class CitizenController
     return $filePath;
   }
 
-   /**
+  /**
    * Chequea que la distancia entre la direccion pasado por parametro y la direccion de la recicladora
    * sea menor a 6km, implementada con numeros aleatorios.
    */
-  function distanceIsMinor6km($address){
-    return rand(0,1);
+  function distanceIsMinor6km($address)
+  {
+    return rand(0, 1);
   }
 
   /**
@@ -88,7 +87,7 @@ class CitizenController
       die();
     }
 
-    if(!$this->distanceIsMinor6km($address)){
+    if (!$this->distanceIsMinor6km($address)) {
       $this->view->showRegisterRetirementRequest(
         "La distancia de su hogar es mayor a 6km. Por favor acerquese personalmente a traer los materiales."
       );
@@ -104,11 +103,10 @@ class CitizenController
         $_FILES["subirfotos"]["name"],
         $_FILES["subirfotos"]["tmp_name"]
       );
-    }else{
+    } else {
       $imageName = null;
     }
-    $insert = $this->model->insert($name,$lastName,$address,intval($movilNumber),$time,$materialsVol,$imageName,$status);
+    $insert = $this->model->insert($name, $lastName, $address, intval($movilNumber), $time, $materialsVol, $imageName, $status);
     $this->view->showRegisterRetirementRequest("Solicitud de retiro creada con exito!");
   }
-
 }
