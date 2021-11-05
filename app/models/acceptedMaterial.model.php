@@ -98,5 +98,19 @@ class AcceptedMaterialModel{
          $query = $this->db->prepare($sql);
          $result= $query->execute($params); 
          return $result;
-     }
+    }
+
+    /**
+     * Elimina la imagen del material reciclable en DB con el id pasado por parametro
+     */
+    function deleteImg($type, $deliveryMethod,$id, $img){
+      if($img){  //si existe imagen
+        $img = null;
+        $sql = 'UPDATE accepted_material SET material= ?, deliveryMethod= ?, image= ? WHERE id = '.$id.' ';
+        $params = [$type, $deliveryMethod, $img];
+
+        $query =$this->db->prepare($sql);
+        return $query->execute($params);
+      }
+    }
 }
