@@ -22,6 +22,16 @@ class SecretaryView
   }
 
   /**
+   * Muestra el formulario de modificacion de un material reciclable.
+   */
+  function printFormUpdateAcceptedMaterial($material){
+    $this->smarty->assign("deliveryMethod_s", $material->deliveryMethod);
+    $this->smarty->assign("img_s", $material->image);
+    $this->smarty->assign('material_s', $material);
+    $this->smarty->display('./templates/formUpdateMaterial.tpl'); 
+  }
+
+  /**
    * Muestra el formulario para ingresar materiales traidos por cartoneros/buena onda
    */
   function showMaterialDeposit($cartoneros, $materials)
