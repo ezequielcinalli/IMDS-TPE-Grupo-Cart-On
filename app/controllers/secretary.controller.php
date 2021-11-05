@@ -100,6 +100,66 @@ class SecretaryController
   }
 
   /**
+   * Manda a mostrar el form de actualizacion de un material
+   */
+  function showFormUpdateAcceptedMaterial($id){
+    $this->authHelper->checkLoggedIn();    
+    $material=$this->model->getMaterial($id);
+    $this->view->printFormUpdateAcceptedMaterial($material);
+  }
+
+  /**
+   * Manda a actualizar un material
+   */
+  function updateAcceptedMaterial($id){
+    $this->authHelper->checkLoggedIn();
+
+    $mat_id = $id;
+    $material = $_POST['materialUpdated'];
+    $deliveryMethod = $_POST['deliveryMethodUpdated'];
+
+    if (empty($material) || empty($deliveryMethod)){
+      $this->viewMain->showError404();
+      die();
+    }
+
+    if($_FILES['input_name']['type'] == "image/jpg" ||
+      $_FILES['input_name']['type'] == "image/jpeg" ||
+      $_FILES['input_name']['type'] == "image/png"){ //si es alguno de estos formatos de imagen
+        $realName= $this->uniqueSaveName(
+          $_FILES['input_name']['name'], //nombre real aporta la extension del archivo
+          $_FILES['input_name']['tmp_name']
+        ); 
+      $success= $this->model->update($material, $deliveryMethod,$mat_id, $realName);
+    }
+    else{
+      $success= $this->model->update($material, $deliveryMethod, $mat_id);
+    }
+    // redirigimos al listado
+    if($success){
+      header('Location: ' . BASE_URL . 'admin-materiales');
+    }  
+    else { 
+      $this->viewMain->showError404();
+    }
+  }
+
+  /**
+   * Manda a eliminar la imagen de un material
+   */
+  function deleteImage($id){
+    $this->authHelper->checkLoggedIn();
+    $material=$this->model->getMaterial($id);
+    
+    $type= $material->material;
+    $deliveryMethod= $material->deliveryMethod;
+    $img= $material->image;
+
+    $this->model->deleteImg($type, $deliveryMethod, $id, $img);
+    header("Location: " .BASE_URL. "admin-materiales");
+  }
+
+  /**
    * Manda a mostrar el formulario para el ingreso de reciclables
    */
   function showMaterialDeposit()
