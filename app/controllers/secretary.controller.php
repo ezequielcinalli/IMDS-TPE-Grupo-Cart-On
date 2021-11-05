@@ -1,5 +1,6 @@
 <?php
 include_once "app/models/acceptedMaterial.model.php";
+include_once "app/models/materialDeposit.model.php";
 include_once "app/models/cartoneroModel.php";
 include_once "app/views/secretary.view.php";
 include_once "app/views/main.view.php";
@@ -9,6 +10,7 @@ class SecretaryController
 {
   private $model;
   private $modelCartonero;
+  private $modelMaterialDeposit;
   private $view;
   private $viewMain;
   private $authHelper;
@@ -20,6 +22,7 @@ class SecretaryController
   {
     $this->model = new AcceptedMaterialModel();
     $this->modelCartonero = new CartoneroModel();
+    $this->modelMaterialDeposit = new MaterialDepositModel();
     $this->view = new SecretaryView();
     $this->viewMain = new MainView();
     $this->authHelper = new AuthHelper();
@@ -109,8 +112,36 @@ class SecretaryController
   /**
    * Valida el formulario recibido, vuelve a mostrarlo indicando exito en la carga o informando el error
    */
-  function checkIncomeMaterialDeposit($params)
+  function checkIncomeMaterialDeposit()
   {
-    echo ("todo");
+    $cartoneros = $this->modelCartonero->getAll();
+    $materials = $this->model->getAll();
+
+    if (
+      !isset($_POST["agent"]) || !isset($_POST["id_material"]) || !is_numeric($_POST["id_material"])
+      || !isset($_POST["weight"]) || !is_numeric($_POST["weight"])
+    ) {
+      $this->view->showMaterialDeposit($cartoneros, $materials, null, "Por favor completa todos los campos del formulario");
+      die();
+    }
+
+    $agent = $_POST["agent"];
+    $id_cartonero = 0; //el 0 es el ciudadano buena onda
+    $id_material = $_POST["id_material"];
+    $weight = $_POST["weight"];
+
+    //si el radio button elegido es cartonero, busca el id del cartonero elegido
+    if ($agent == "cartonero" && isset($_POST["id_cartonero"])) {
+      $id_cartonero = $_POST["id_cartonero"];
+      if ($id_cartonero == "null") {
+        $this->view->showMaterialDeposit($cartoneros, $materials, null, "Por favor selecciona un cartonero del listado o elige al ciudadano buena onda");
+        die();
+      }
+    }
+
+    $this->modelMaterialDeposit->insert($id_cartonero, $id_material, $weight);
+
+    $msg = "Exito al ingresar el material reciclable!";
+    $this->view->showMaterialDeposit($cartoneros, $materials, $msg);
   }
 }

@@ -73,7 +73,7 @@ switch ($params[0]) {
     $controllerSecretary->showMaterialDeposit();
     break;
   case 'cargar-material-peso':
-    $controllerSecretary->showMaterialDeposit($params);
+    $controllerSecretary->checkIncomeMaterialDeposit();
     break;
     //MAIN CONTROLLER
   case "home":

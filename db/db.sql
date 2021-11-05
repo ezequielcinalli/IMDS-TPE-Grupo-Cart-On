@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 05, 2021 at 09:32 PM
+-- Generation Time: Nov 05, 2021 at 10:26 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -86,7 +86,7 @@ CREATE TABLE `material_deposit` (
   `id_cartonero` int(11) NOT NULL,
   `id_material` int(11) NOT NULL,
   `weight` float NOT NULL,
-  `fecha` datetime NOT NULL
+  `fecha` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

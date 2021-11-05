@@ -24,10 +24,12 @@ class SecretaryView
   /**
    * Muestra el formulario para ingresar materiales traidos por cartoneros/buena onda
    */
-  function showMaterialDeposit($cartoneros, $materials)
+  function showMaterialDeposit($cartoneros, $materials, $msg = null, $error = null)
   {
     $this->smarty->assign('cartoneros', $cartoneros);
     $this->smarty->assign('materials', $materials);
+    $this->smarty->assign('msg', $msg);
+    $this->smarty->assign('error', $error);
     $this->smarty->display('./templates/recyclableMaterialIncome.tpl');
   }
 }
