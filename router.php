@@ -84,6 +84,9 @@ switch ($params[0]) {
   case 'cargar-material-peso':
     $controllerSecretary->checkIncomeMaterialDeposit();
     break;
+  case 'solicitudes-retiro':
+    $controllerSecretary->showRetirementRequests();
+    break;
     //MAIN CONTROLLER
   case "home":
     $controllerMain->showHome();
