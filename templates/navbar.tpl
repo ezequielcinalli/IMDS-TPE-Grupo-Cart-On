@@ -52,6 +52,7 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownAdmin">
                   <a class="dropdown-item" href="admin-materiales">ABM de materiales aceptados</a>
                   <a class="dropdown-item" href="cargar-material">Cargar ingreso de materiales</a>
+                  <a class="dropdown-item" href="solicitudes-retiro">Solicitudes de retiro</a>
                 </div>
               </div>
               <div class="dropdown">

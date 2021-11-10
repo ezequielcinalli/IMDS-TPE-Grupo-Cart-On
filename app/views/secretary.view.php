@@ -46,7 +46,8 @@ class SecretaryView
   /**
    * Muestra la lista de las solicitudes de retiro
    */
-  function printRetirementRequests(){
+  function printRetirementRequests($requests){
+    $this->smarty->assign('requests', $requests);
     $this->smarty->display('./templates/retirementRequests.tpl');
   }
 }
