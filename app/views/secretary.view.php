@@ -42,4 +42,11 @@ class SecretaryView
     $this->smarty->assign('error', $error);
     $this->smarty->display('./templates/recyclableMaterialIncome.tpl');
   }
+
+  /**
+   * Muestra la lista de las solicitudes de retiro
+   */
+  function printRetirementRequests(){
+    $this->smarty->display('./templates/retirementRequests.tpl');
+  }
 }

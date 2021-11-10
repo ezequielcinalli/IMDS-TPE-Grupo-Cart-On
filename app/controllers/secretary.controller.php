@@ -109,6 +109,14 @@ class SecretaryController
   }
 
   /**
+   * Manda a mostrar el form de actualizacion de un material
+   */
+  function showRetirementRequests(){
+    $this->authHelper->checkLoggedIn();
+    $this->view->printRetirementRequests();
+  }
+
+  /**
    * Manda a actualizar un material
    */
   function updateAcceptedMaterial($id){
