@@ -23,6 +23,7 @@ class SecretaryController
     $this->model = new AcceptedMaterialModel();
     $this->modelCartonero = new CartoneroModel();
     $this->modelMaterialDeposit = new MaterialDepositModel();
+    $this->modelRetirementRequest = new RetirementRequestModel();
     $this->view = new SecretaryView();
     $this->viewMain = new MainView();
     $this->authHelper = new AuthHelper();
@@ -108,13 +109,7 @@ class SecretaryController
     $this->view->printFormUpdateAcceptedMaterial($material);
   }
 
-  /**
-   * Manda a mostrar el form de actualizacion de un material
-   */
-  function showRetirementRequests(){
-    $this->authHelper->checkLoggedIn();
-    $this->view->printRetirementRequests();
-  }
+  
 
   /**
    * Manda a actualizar un material
@@ -198,7 +193,8 @@ class SecretaryController
     $id_material = $_POST["id_material"];
     $weight = $_POST["weight"];
 
-    //si el radio button elegido es cartonero, busca el id del cartonero elegido
+    // si el radio button elegido es cartonero, busca el id del cartonero elegido
+      
     if ($agent == "cartonero" && isset($_POST["id_cartonero"])) {
       $id_cartonero = $_POST["id_cartonero"];
       if ($id_cartonero == "null") {
@@ -212,4 +208,32 @@ class SecretaryController
     $msg = "Exito al ingresar el material reciclable!";
     $this->view->showMaterialDeposit($cartoneros, $materials, $msg);
   }
+
+  /**
+   * Manda a mostrar una lista con todas las solicitudes de retiros
+   */
+  function showAllRetirementRequests(){
+      $this->authHelper->checkLoggedIn();
+      $requests = $this->modelRetirementRequest->getAll();
+      $this->view->printRetirementRequests($requests);
+  }
+
+  /**
+   * Manda a mostrar una lista con las solicitudes de retiros filtradas por una fecha
+   */
+  function showFilterRetirementRequests(){
+    $date1 = date('y/m/d', strtotime($_POST['date1']));
+    $date2 = date('y/m/d', strtotime($_POST['date2']));
+
+
+    if(isset($date1)&&isset($date2)){
+
+      $this->authHelper->checkLoggedIn();
+      $requests = $this->modelRetirementRequest->getRetirementRequestBetweenDates($date1, $date2);
+      $this->view->printRetirementRequests($requests);
+
+    }
+  }
+
+  
 }

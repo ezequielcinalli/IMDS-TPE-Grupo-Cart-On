@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 05, 2021 at 10:26 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 10-11-2021 a las 23:44:42
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `imds_tpe`
+-- Base de datos: `imds_tpe`
 --
-CREATE DATABASE `imds_tpe` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `imds_tpe`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `accepted_material`
+-- Estructura de tabla para la tabla `accepted_material`
 --
 
 CREATE TABLE `accepted_material` (
@@ -37,7 +35,7 @@ CREATE TABLE `accepted_material` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `accepted_material`
+-- Volcado de datos para la tabla `accepted_material`
 --
 
 INSERT INTO `accepted_material` (`id`, `material`, `deliveryMethod`, `image`) VALUES
@@ -52,7 +50,7 @@ INSERT INTO `accepted_material` (`id`, `material`, `deliveryMethod`, `image`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cartonero`
+-- Estructura de tabla para la tabla `cartonero`
 --
 
 CREATE TABLE `cartonero` (
@@ -65,7 +63,7 @@ CREATE TABLE `cartonero` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `cartonero`
+-- Volcado de datos para la tabla `cartonero`
 --
 
 INSERT INTO `cartonero` (`id_cartonero`, `name`, `lastname`, `email`, `address`, `birthday`) VALUES
@@ -78,7 +76,7 @@ INSERT INTO `cartonero` (`id_cartonero`, `name`, `lastname`, `email`, `address`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `material_deposit`
+-- Estructura de tabla para la tabla `material_deposit`
 --
 
 CREATE TABLE `material_deposit` (
@@ -92,7 +90,7 @@ CREATE TABLE `material_deposit` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `retirement_request`
+-- Estructura de tabla para la tabla `retirement_request`
 --
 
 CREATE TABLE `retirement_request` (
@@ -104,27 +102,41 @@ CREATE TABLE `retirement_request` (
   `retirement_time` varchar(50) NOT NULL,
   `volume_materials` varchar(50) NOT NULL,
   `image` int(11) DEFAULT NULL,
-  `completed` tinyint(1) NOT NULL DEFAULT 0
+  `completed` tinyint(1) NOT NULL DEFAULT 0,
+  `creation_date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Volcado de datos para la tabla `retirement_request`
+--
+
+INSERT INTO `retirement_request` (`id`, `name`, `lastname`, `address`, `phone`, `retirement_time`, `volume_materials`, `image`, `completed`, `creation_date`) VALUES
+(2, 'Benjamin', 'Aldaya', 'Calle falsa 123', '2983505724', 'horario1', 'caja', NULL, 0, '2021-11-10'),
+(3, 'Benjamin', 'Aldaya', 'Calle falsa 123', '2983505724', 'horario1', 'cajacamioneta', NULL, 0, '2021-11-10'),
+(4, 'Benjamin', 'Aldaya', 'Calle falsa 123', '2983505724', 'horario2', 'cajacamioneta', NULL, 0, '2021-11-10'),
+(5, 'Benjamin', 'Aldaya', 'Calle falsa 123', '2983505724', 'horario1', 'cajacamioneta', NULL, 0, '2021-11-10'),
+(6, 'Benjamin', 'Aldaya', 'Calle falsa 123', '12231231231231', 'horario1', 'caja', NULL, 0, '2021-11-10'),
+(7, 'Benjamin', 'Aldaya', 'Calle falsa 123', '123231312231', 'horario1', 'caja', NULL, 0, '2021-11-10'),
+(8, 'Benjamin', 'Aldaya', 'Calle falsa 123', '12312323', 'horario1', 'caja', NULL, 0, '2021-11-10');
+
+--
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `accepted_material`
+-- Indices de la tabla `accepted_material`
 --
 ALTER TABLE `accepted_material`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cartonero`
+-- Indices de la tabla `cartonero`
 --
 ALTER TABLE `cartonero`
   ADD PRIMARY KEY (`id_cartonero`);
 
 --
--- Indexes for table `material_deposit`
+-- Indices de la tabla `material_deposit`
 --
 ALTER TABLE `material_deposit`
   ADD PRIMARY KEY (`id_deposit`),
@@ -132,45 +144,45 @@ ALTER TABLE `material_deposit`
   ADD KEY `id_material` (`id_material`);
 
 --
--- Indexes for table `retirement_request`
+-- Indices de la tabla `retirement_request`
 --
 ALTER TABLE `retirement_request`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `accepted_material`
+-- AUTO_INCREMENT de la tabla `accepted_material`
 --
 ALTER TABLE `accepted_material`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `cartonero`
+-- AUTO_INCREMENT de la tabla `cartonero`
 --
 ALTER TABLE `cartonero`
   MODIFY `id_cartonero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `material_deposit`
+-- AUTO_INCREMENT de la tabla `material_deposit`
 --
 ALTER TABLE `material_deposit`
   MODIFY `id_deposit` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `retirement_request`
+-- AUTO_INCREMENT de la tabla `retirement_request`
 --
 ALTER TABLE `retirement_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `material_deposit`
+-- Filtros para la tabla `material_deposit`
 --
 ALTER TABLE `material_deposit`
   ADD CONSTRAINT `FK_material_deposit_cartonero` FOREIGN KEY (`id_cartonero`) REFERENCES `cartonero` (`id_cartonero`),

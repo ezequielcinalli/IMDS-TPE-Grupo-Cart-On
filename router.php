@@ -85,7 +85,10 @@ switch ($params[0]) {
     $controllerSecretary->checkIncomeMaterialDeposit();
     break;
   case 'solicitudes-retiro':
-    $controllerSecretary->showRetirementRequests();
+    $controllerSecretary->showAllRetirementRequests();
+    break;
+  case 'solicitudes-retiro-filtrada':
+    $controllerSecretary->showFilterRetirementRequests();
     break;
     //MAIN CONTROLLER
   case "home":
