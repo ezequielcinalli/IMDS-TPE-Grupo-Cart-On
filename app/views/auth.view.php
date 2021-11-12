@@ -1,7 +1,8 @@
 <?php
 require_once "libs/Smarty.class.php";
 
-class AuthView{
+class AuthView
+{
   private $smarty;
 
   function __construct()
@@ -18,7 +19,4 @@ class AuthView{
     $this->smarty->assign('messageError', $msg);
     $this->smarty->display('templates/login.tpl');
   }
-
 }
-
-

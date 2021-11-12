@@ -24,11 +24,12 @@ class SecretaryView
   /**
    * Muestra el formulario de modificacion de un material reciclable.
    */
-  function printFormUpdateAcceptedMaterial($material){
+  function printFormUpdateAcceptedMaterial($material)
+  {
     $this->smarty->assign("deliveryMethod_s", $material->deliveryMethod);
     $this->smarty->assign("img_s", $material->image);
     $this->smarty->assign('material_s', $material);
-    $this->smarty->display('./templates/formUpdateMaterial.tpl'); 
+    $this->smarty->display('./templates/formUpdateMaterial.tpl');
   }
 
   /**
@@ -46,7 +47,8 @@ class SecretaryView
   /**
    * Muestra la lista de las solicitudes de retiro
    */
-  function printRetirementRequests($requests){
+  function printRetirementRequests($requests)
+  {
     $this->smarty->assign('requests', $requests);
     $this->smarty->display('./templates/retirementRequests.tpl');
   }

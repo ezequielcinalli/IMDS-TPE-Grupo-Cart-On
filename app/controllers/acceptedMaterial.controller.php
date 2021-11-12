@@ -34,7 +34,7 @@ class AcceptedMaterialController
     $id = 0;
     if (isset($params[1])) {
       $id = $params[1];
-    } 
+    }
 
     $material = $this->model->getMaterial($id);
 
@@ -43,7 +43,5 @@ class AcceptedMaterialController
     } else {
       $this->viewMain->showError404();
     }
-
   }
-
 }

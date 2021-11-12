@@ -73,11 +73,11 @@ switch ($params[0]) {
     $controllerSecretary->showFormUpdateAcceptedMaterial($params[1]);
     break;
   case 'actualizar-material': //boton del form editar
-      $controllerSecretary->updateAcceptedMaterial($params[1]);
-      break;
+    $controllerSecretary->updateAcceptedMaterial($params[1]);
+    break;
   case 'eliminar-img-material':
-      $controllerSecretary->deleteImage($params[1]);
-      break;
+    $controllerSecretary->deleteImage($params[1]);
+    break;
   case 'cargar-material':
     $controllerSecretary->showMaterialDeposit();
     break;

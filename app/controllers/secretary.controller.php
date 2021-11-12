@@ -103,46 +103,48 @@ class SecretaryController
   /**
    * Manda a mostrar el form de actualizacion de un material
    */
-  function showFormUpdateAcceptedMaterial($id){
-    $this->authHelper->checkLoggedIn();    
-    $material=$this->model->getMaterial($id);
+  function showFormUpdateAcceptedMaterial($id)
+  {
+    $this->authHelper->checkLoggedIn();
+    $material = $this->model->getMaterial($id);
     $this->view->printFormUpdateAcceptedMaterial($material);
   }
 
-  
+
 
   /**
    * Manda a actualizar un material
    */
-  function updateAcceptedMaterial($id){
+  function updateAcceptedMaterial($id)
+  {
     $this->authHelper->checkLoggedIn();
 
     $mat_id = $id;
     $material = $_POST['materialUpdated'];
     $deliveryMethod = $_POST['deliveryMethodUpdated'];
 
-    if (empty($material) || empty($deliveryMethod)){
+    if (empty($material) || empty($deliveryMethod)) {
       $this->viewMain->showError404();
       die();
     }
 
-    if($_FILES['input_name']['type'] == "image/jpg" ||
+    if (
+      $_FILES['input_name']['type'] == "image/jpg" ||
       $_FILES['input_name']['type'] == "image/jpeg" ||
-      $_FILES['input_name']['type'] == "image/png"){ //si es alguno de estos formatos de imagen
-        $realName= $this->uniqueSaveName(
-          $_FILES['input_name']['name'], //nombre real aporta la extension del archivo
-          $_FILES['input_name']['tmp_name']
-        ); 
-      $success= $this->model->update($material, $deliveryMethod,$mat_id, $realName);
-    }
-    else{
-      $success= $this->model->update($material, $deliveryMethod, $mat_id);
+      $_FILES['input_name']['type'] == "image/png"
+    ) { //si es alguno de estos formatos de imagen
+      $realName = $this->uniqueSaveName(
+        $_FILES['input_name']['name'], //nombre real aporta la extension del archivo
+        $_FILES['input_name']['tmp_name']
+      );
+      $success = $this->model->update($material, $deliveryMethod, $mat_id, $realName);
+    } else {
+      $success = $this->model->update($material, $deliveryMethod, $mat_id);
     }
     // redirigimos al listado
-    if($success){
+    if ($success) {
       header('Location: ' . BASE_URL . 'admin-materiales');
-    }  
-    else { 
+    } else {
       $this->viewMain->showError404();
     }
   }
@@ -150,16 +152,17 @@ class SecretaryController
   /**
    * Manda a eliminar la imagen de un material
    */
-  function deleteImage($id){
+  function deleteImage($id)
+  {
     $this->authHelper->checkLoggedIn();
-    $material=$this->model->getMaterial($id);
-    
-    $type= $material->material;
-    $deliveryMethod= $material->deliveryMethod;
-    $img= $material->image;
+    $material = $this->model->getMaterial($id);
+
+    $type = $material->material;
+    $deliveryMethod = $material->deliveryMethod;
+    $img = $material->image;
 
     $this->model->deleteImg($type, $deliveryMethod, $id, $img);
-    header("Location: " .BASE_URL. "admin-materiales");
+    header("Location: " . BASE_URL . "admin-materiales");
   }
 
   /**
@@ -194,7 +197,7 @@ class SecretaryController
     $weight = $_POST["weight"];
 
     // si el radio button elegido es cartonero, busca el id del cartonero elegido
-      
+
     if ($agent == "cartonero" && isset($_POST["id_cartonero"])) {
       $id_cartonero = $_POST["id_cartonero"];
       if ($id_cartonero == "null") {
@@ -212,28 +215,27 @@ class SecretaryController
   /**
    * Manda a mostrar una lista con todas las solicitudes de retiros
    */
-  function showAllRetirementRequests(){
-      $this->authHelper->checkLoggedIn();
-      $requests = $this->modelRetirementRequest->getAll();
-      $this->view->printRetirementRequests($requests);
+  function showAllRetirementRequests()
+  {
+    $this->authHelper->checkLoggedIn();
+    $requests = $this->modelRetirementRequest->getAll();
+    $this->view->printRetirementRequests($requests);
   }
 
   /**
    * Manda a mostrar una lista con las solicitudes de retiros filtradas por una fecha
    */
-  function showFilterRetirementRequests(){
+  function showFilterRetirementRequests()
+  {
     $date1 = date('y/m/d', strtotime($_POST['date1']));
     $date2 = date('y/m/d', strtotime($_POST['date2']));
 
 
-    if(isset($date1)&&isset($date2)){
+    if (isset($date1) && isset($date2)) {
 
       $this->authHelper->checkLoggedIn();
       $requests = $this->modelRetirementRequest->getRetirementRequestBetweenDates($date1, $date2);
       $this->view->printRetirementRequests($requests);
-
     }
   }
-
-  
 }

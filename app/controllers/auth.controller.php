@@ -4,7 +4,8 @@ include_once "app/views/auth.view.php";
 include_once "app/views/main.view.php";
 include_once 'app/helpers/auth.helper.php';
 
-class AuthController{
+class AuthController
+{
   private $view;
   private $viewMain;
   private $authHelper;
@@ -22,15 +23,17 @@ class AuthController{
   /**
    * Manda a mostrar la vista del formulario de login 
    */
-  function login(){
+  function login()
+  {
     $this->authHelper->checkSessionIsStarted();
-    $this->view->showLogin();    
+    $this->view->showLogin();
   }
 
   /**
    * Chequea los datos del formulario recibido e inicia sesion
    */
-  function checkLogin(){
+  function checkLogin()
+  {
     if (!empty($_POST['email']) && !empty($_POST['pass'])) {
       $user = array('email' => 'admin@admin.com', 'pass' => '123456');
       if ($user['email'] == $_POST['email'] && $user['pass'] == $_POST['pass']) {
@@ -50,7 +53,4 @@ class AuthController{
   {
     $this->authHelper->logout();
   }
-
 }
-
-
