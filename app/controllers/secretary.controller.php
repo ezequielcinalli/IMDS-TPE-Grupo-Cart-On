@@ -11,6 +11,7 @@ class SecretaryController
   private $model;
   private $modelCartonero;
   private $modelMaterialDeposit;
+  private $modelRetirementRequest;
   private $view;
   private $viewMain;
   private $authHelper;

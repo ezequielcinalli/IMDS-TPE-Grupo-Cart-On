@@ -7,7 +7,6 @@ include_once 'app/helpers/auth.helper.php';
 class AuthController
 {
   private $view;
-  private $viewMain;
   private $authHelper;
 
   /**
@@ -16,7 +15,6 @@ class AuthController
   function __construct()
   {
     $this->view = new AuthView();
-    $this->viewMain = new MainView();
     $this->authHelper = new AuthHelper();
   }
 
