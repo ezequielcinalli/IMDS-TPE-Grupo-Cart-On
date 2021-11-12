@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `imds_tpe`
 --
-
+CREATE DATABASE `imds_tpe` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `imds_tpe`;
 -- --------------------------------------------------------
 
 --
