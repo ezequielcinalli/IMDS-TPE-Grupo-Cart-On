@@ -41,7 +41,7 @@
         <div>
           {* display the php session ($_SESSION) *}
           {if !$smarty.session}
-            <a href="login" class="btn btn-primary">Iniciar sesion</a>
+            {* <a href="login" class="btn btn-primary">Iniciar sesion</a> *}
           {else}
             <div class="d-flex">
               <div class="dropdown">
