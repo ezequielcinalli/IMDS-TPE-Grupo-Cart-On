@@ -48,7 +48,7 @@ class SecretaryController
    */
   function addAcceptedMaterial()
   {
-
+    $this->authHelper->checkLoggedIn();
     $material = $_POST['material'];
     $deliveryMethod = $_POST['deliveryMethod'];
 
@@ -84,6 +84,7 @@ class SecretaryController
    */
   function showSecretaryMaterials()
   {
+    $this->authHelper->checkLoggedIn();
     $materials = $this->model->getAll();
     //actualizo la vista
     $this->view->printSecretaryMaterials($materials);
@@ -94,8 +95,8 @@ class SecretaryController
    */
   function deleteAcceptedMaterial($id)
   {
+    $this->authHelper->checkLoggedIn();
     if (isset($id)) {
-      $this->authHelper->checkLoggedIn();
       $this->model->delete($id);
     }
     header('Location: ' . BASE_URL . 'admin-materiales');
@@ -171,6 +172,7 @@ class SecretaryController
    */
   function showMaterialDeposit()
   {
+    $this->authHelper->checkLoggedIn();
     $cartoneros = $this->modelCartonero->getAll();
     $materials = $this->model->getAll();
     $this->view->showMaterialDeposit($cartoneros, $materials);
@@ -181,6 +183,7 @@ class SecretaryController
    */
   function checkIncomeMaterialDeposit()
   {
+    $this->authHelper->checkLoggedIn();
     $cartoneros = $this->modelCartonero->getAll();
     $materials = $this->model->getAll();
 
@@ -228,6 +231,7 @@ class SecretaryController
    */
   function showFilterRetirementRequests()
   {
+    $this->authHelper->checkLoggedIn();
     $date1 = date('y/m/d', strtotime($_POST['date1']));
     $date2 = date('y/m/d', strtotime($_POST['date2']));
 
